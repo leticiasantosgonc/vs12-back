@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.util.Scanner;
 
 public class aula02 {
@@ -5,48 +6,39 @@ public class aula02 {
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
 
-        int[] array = {1, 2, 3};
-        int soma, media;
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int soma=0, media;
 
-        System.out.println("-----Atividade aula 01-Array-----");
-//        soma = array[0] + array[1] + array[2];
-//        media = (array[0] + array[1] + array[2])/3;
-//        System.out.println("Soma: "+soma);
-//        System.out.println("Média: "+media);
+        System.out.println("---Atividade aula 01-Array---");
+        for (int valores : array) {
+            soma += valores;
+        }
+        media = (soma/ array.length);
+        System.out.println("Soma: "+soma+"\nMédia: "+media);
 
-        System.out.println("-----Atividade aula 02-Matriz-----");
-//        int somaLum, totalM, somaLdois, sub;
-//        //int [][] matriz = new int[2][2];
-//        int[][] matriz =
-//                {{2, 4}, //6
-//                {1, 3}}; //4
-//        totalM = matriz[0][0]+matriz[1][0]+matriz[0][1]+matriz[1][1]; //10
-//        somaLum = matriz[0][0]+matriz[0][1]; //6
-//        somaLdois = matriz[1][0]+matriz[1][1]; //4
-//        sub = (matriz[0][0]+matriz[0][1]) - (matriz[1][0]+matriz[1][1]); //2
-//
-//        System.out.println("Total: "+totalM);
-//        System.out.println("Soma da 1 linha: "+somaLum);
-//        System.out.println("Soma da 2 linha: "+somaLdois);
-//        System.out.println("Subtração da 1 linha pela 2: "+sub);
+       System.out.println("\n---Atividade aula 02-Matriz---");
+       int total=0, aux=0;
+       int[][] matriz =
+               {{2, 4, 6}, //12
+               {1, 3, 5}}; //9
+       int[] auxArray = new int[matriz.length];
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                aux += matriz[i][j];
+                total += matriz[i][j];
+            }
+            auxArray[i]=aux;
+            System.out.println("Soma linha "+(i+1)+": "+aux);
+            aux = 0;
+        }
+        System.out.println("Total: "+total);
+        int sub=0;
+        for (int valores : auxArray) {
+            sub = valores - sub;
+        }
+        System.out.println("Subtração da 1 linha pela linha 2: "+sub);
 
-        System.out.println("-----Atividade aula 03-Laços-----");
-//        System.out.println("Print array com laço");
-//        for (int i = 0; i < array.length; i++) {
-//            System.out.println(array[i]);
-//        }
-//        System.out.println("Print matriz com laço");
-//        for (int i = 0; i < matriz.length; i++) {
-//            for (int j = 0; j < matriz[i].length; j++) {
-//                System.out.println(matriz[i][j]);
-//            }
-//        }
-//        System.out.println("Print array com Forech");
-//        for (int numero: array) {
-//            System.out.println(numero);
-//        }
-
-        //String nome = Integer.parseInt(sc.nextLine())
+        System.out.println("\n-----Atividade aula 03-Laços-----");
         int[] valor = new int[5];
         int mediaValores, totalValores=0;
         System.out.println("Informe os valores do vetor de 5 posições");
@@ -55,7 +47,7 @@ public class aula02 {
             totalValores += valor[i]; //enquanto solicita os valores, já soma, acumulativo
         }
         mediaValores = totalValores/valor.length;
-        System.out.println("O valor total do array é: "+totalValores);
-        System.out.println("A média dos valores do array é: "+mediaValores);
+        System.out.println("Total do array: "+totalValores);
+        System.out.println("Média dos valores do array: "+mediaValores);
     }
 }

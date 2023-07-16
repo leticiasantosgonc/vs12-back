@@ -57,7 +57,7 @@ public class Main {
                 System.out.println("Cidades do RS\n1-Porto Alegre\n2-Capão da Canoa");
                 op = leitura.nextInt();
                 if(op == 1){
-                    System.out.println("Porto Alegre\nPopulação: 1,5 milão\nPrincipal festa: Jogo do Internacional\nIDH: 0,805");
+                    System.out.println("Porto Alegre\nPopulação: 1,5 milhão\nPrincipal festa: Jogo do Internacional\nIDH: 0,805");
                 } else {
                     System.out.println("Capão da Canoa\nPopulação: 55 mil\nPrincipal festa: Capão Geek Fest\nIDH: 0,743,");
                 }
@@ -75,7 +75,7 @@ public class Main {
                 System.out.println("Cidades do PR\n1-Curitiba\n2-Ponta Grossa");
                 op = leitura.nextInt();
                 if(op == 1){
-                    System.out.println("Curitiba\nPopulação: 1,8 milão\nPrincipal festa: Festa das Orquideas\nIDH: 0,823");
+                    System.out.println("Curitiba\nPopulação: 1,8 milhão\nPrincipal festa: Festa das Orquideas\nIDH: 0,823");
                 } else {
                     System.out.println("Ponta Grossa\nPopulação: 355 mil\nPrincipal festa: Festa do Peixe\nIDH: 0,763,");
                 }
@@ -91,33 +91,34 @@ public class Main {
         Feliz Happy - Triste Sad - Deveria Shoul*/
         System.out.println("Informe a palavra que deseja traduzir:");
         palavra = leitura.nextLine();
-        if (palavra.equals("cachorro") || palavra.equals("Cachorro")){
+        palavra = palavra.toLowerCase();
+        if (palavra.equals("cachorro")){
             System.out.println("Dog");
-        } else if(palavra.equals("dog") || palavra.equals("Dog")){
+        } else if(palavra.equals("dog")){
             System.out.println("Cachorro");
-        } else if(palavra.equals("tempo") || palavra.equals("Tempo")){
+        } else if(palavra.equals("tempo")){
             System.out.println("Time");
-        }else if(palavra.equals("time") || palavra.equals("Time")){
+        }else if(palavra.equals("time")){
             System.out.println("Tempo");
-        }else if(palavra.equals("amor") || palavra.equals("Amor")){
+        }else if(palavra.equals("amor")){
             System.out.println("Love");
-        }else if(palavra.equals("love") || palavra.equals("Love")){
+        }else if(palavra.equals("love")){
             System.out.println("Amor");
-        }else if(palavra.equals("cidade") || palavra.equals("Cidade")){
+        }else if(palavra.equals("cidade")){
             System.out.println("City");
-        }else if(palavra.equals("city") || palavra.equals("City")){
+        }else if(palavra.equals("city")){
             System.out.println("Cidade");
-        } else if(palavra.equals("feliz") || palavra.equals("Feliz")){
+        } else if(palavra.equals("feliz")){
             System.out.println("Happy");
-        } else if(palavra.equals("happy") || palavra.equals("Happy")){
+        } else if(palavra.equals("happy")){
             System.out.println("Feliz");
-        } else if(palavra.equals("triste") || palavra.equals("Triste")){
+        } else if(palavra.equals("triste")){
             System.out.println("Sad");
-        } else if(palavra.equals("sad") || palavra.equals("Sad")){
+        } else if(palavra.equals("sad")){
             System.out.println("Triste");
-        } else if(palavra.equals("deveria") || palavra.equals("Deveria")){
+        } else if(palavra.equals("deveria")){
             System.out.println("Shoul");
-        } else if(palavra.equals("shoul") || palavra.equals("Shoul")){
+        } else if(palavra.equals("shoul")){
             System.out.println("Deveria");
         } else {
             System.out.println("Essa palavra não é válida");
@@ -128,15 +129,15 @@ public class Main {
         que o valor que está em A passe para B e vice-versa. Ao final, escrever os valores que ficaram armazenados nas variáveis*/
 
         //variáveis exercício 4
-        int a = 10;
-        int b = 20;
-        int aux;
+        int varA = 10;
+        int varB = 20;
+        int varAux;
 
-        System.out.println("Antes da troca\nVariável A: "+a+"\nVariável B:"+b);
-        aux = a;
-        a = b;
-        b = aux;
-        System.out.println("\nDepois da troca\nVariável A: "+a+"\nVariável B:"+b);
+        System.out.println("Antes da troca\nVariável A: "+varA+"\nVariável B: "+varB);
+        varAux = varA;
+        varA = varB;
+        varB = varAux;
+        System.out.println("\nDepois da troca\nVariável A: "+varA+"\nVariável B: "+varB);
 
         System.out.println("-----Exercício 05----");
         /* Escreva um algoritmo para ler as dimensões de um retângulo (base e altura), calcular e escrever
@@ -175,6 +176,7 @@ public class Main {
         total, usando a tabela abaixo. Mostre uma mensagem no caso de código inválido.*/
         System.out.println("Informe o código do produto: ");
         cod = leitura.nextLine();
+        cod = cod.toUpperCase();
         if (cod.equals("ABCD")){ // 5,30
             System.out.println("Informe a quantidade comprada: ");
             qtd = leitura.nextInt();
@@ -210,16 +212,17 @@ public class Main {
         leitura.nextLine();
         System.out.println("Informe o cargo do funcionário");
         cargo = leitura.nextLine();
+        cargo = cargo.toLowerCase();
 
-        if(cargo.equals("Gerente")|| cargo.equals("gerente")){ // 10%
+        if(cargo.equals("gerente")){ // 10%
             salarioAtual = (salarioAntigo * 10)/100;
             salarioAtual += salarioAntigo;
             System.out.println("Salário antigo: "+salarioAntigo+"\nNovo salário: "+salarioAtual+"\nDiferença: "+(salarioAtual-salarioAntigo));
-        } else if(cargo.equals("Engenheiro")|| cargo.equals("engenheiro")){ // 20%
+        } else if(cargo.equals("engenheiro")){ // 20%
             salarioAtual = (salarioAntigo * 20)/100;
             salarioAtual += salarioAntigo;
             System.out.println("Salário antigo: "+salarioAntigo+"\nNovo salário: "+salarioAtual+"\nDiferença: "+(salarioAtual-salarioAntigo));
-        } else if(cargo.equals("Tecnico")|| cargo.equals("tecnico")){ // 30%
+        } else if(cargo.equals("tecnico")){ // 30%
             salarioAtual = (salarioAntigo * 30)/100;
             salarioAtual += salarioAntigo;
             System.out.println("Salário antigo: "+salarioAntigo+"\nNovo salário: "+salarioAtual+"\nDiferença: "+(salarioAtual-salarioAntigo));
