@@ -12,4 +12,8 @@ public class Animal {
     public String caminha(){
         return "caminhou";
     }
+
+    public String getNome(){
+        return nome;
+    }
 }
