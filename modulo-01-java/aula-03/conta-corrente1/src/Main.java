@@ -46,7 +46,8 @@ public class Main {
         endereco2.numero= 3058;
         endereco2.logradouro= "Av. Paraguassu";
         endereco2.tipo = 2;
-        
+
+        //teste classe ContaCorrente
         conta1.numeroConta = "12354";
         conta1.agencia = 10;
         conta1.saldo = 115.30;
