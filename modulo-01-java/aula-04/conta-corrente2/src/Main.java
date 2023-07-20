@@ -15,7 +15,7 @@ public class Main {
 
         System.out.println(contaCorrente1.getSaldo());
         System.out.println(contaCorrente1.retornarSaldoComChequeEspecial());
-        if(contaCorrente1.sacar(1100)){
+        if(contaCorrente1.sacar(0)){
             System.out.println("sacou");
         }else{
             System.out.println("não sacou");
@@ -43,7 +43,6 @@ public class Main {
         endereco[0].setCidade("Capao");
         cliente1.setEnderecos(endereco);
         cliente1.imprimirEnderecos();
-
 
 
 
