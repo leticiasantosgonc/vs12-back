@@ -1,8 +1,8 @@
-# Tasks Programa Vem Ser da DBC - 12º Edição
+# 👩‍💻 Tasks Programa Vem Ser da DBC - 12º Edição
 
-## Conteúdos das aulas da trilha de back-end.
+### 📚 Conteúdos das aulas da trilha de back-end.
 
-### 📂 1. Módulo Java
+📂 1. Módulo Java
 
 | Aula | Assuntos                       | Tasks e exercícios da aula                                                      |
 | ---- | -------------------------------| ------------------------------------------------------------------------------- |
@@ -15,7 +15,7 @@
 | 07   |  String, _Enums_ e _Exceptions_| [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-01-java/aula-07/exercicios) |
 | 08   |  Datas                         | [Pasta]() |
 
-### 📂 1.1 Módulo JUnit
+📂 1.1 Módulo JUnit
 
 | Aula | Assuntos                      | Tasks e exercícios da aula                                               |
 | ---- | ----------------------------- | ------------------------------------------------------------------------ |
