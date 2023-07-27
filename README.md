@@ -21,3 +21,9 @@
 | ---- | ----------------------------- | ------------------------------------------------------------------------ |
 | 01   | TDD, testes unitários e JUnit | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-01-1-junit/conta-corrente4) |
 
+📂 2. Módulo BD Oracle
+
+| Aula | Assuntos                      | Tasks e exercícios da aula                                               |
+| ---- | ----------------------------- | ------------------------------------------------------------------------ |
+| 01   | Introdução + DML              | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-02) |
+| 02   | FK + MER                      | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-02) |
