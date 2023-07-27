@@ -8,7 +8,7 @@ WHERE logradouro LIKE 'A%' OR logradouro LIKE 'a%';
 
 -- Selecionar todos os endereços que tenham cep com final ‘0’;..
  SELECT * FROM ENDERECO 
- WHERE cep LIKE '%0';
+ WHERE TRIM(cep) LIKE '%0';
 
 -- Selecionar todos os endereços que tenham números entre 1 e 100;
 SELECT * FROM ENDERECO
@@ -16,14 +16,14 @@ WHERE numero BETWEEN 1 AND 100;
 
 -- Selecionar todos os endereços que comecem por “RUA” e ordenar pelo cep de forma decrescente ;
 SELECT * FROM ENDERECO 
-WHERE logradouro LIKE 'Rua%' OR logradouro LIKE 'rua%'
+WHERE UPPER(logradouro) LIKE 'RUA%'
 ORDER BY cep DESC;
 
 -- Selecionar a quantidade de endereços cadastrados na tabela;
 SELECT COUNT(LOGRADOURO) FROM ENDERECO
 
 -- Selecionar a quantidade de endereços cadastrados agrupados pelo id da cidade
-SELECT COUNT(logradouro) FROM ENDERECO
+SELECT COUNT(id_endereco), id_cidade  FROM ENDERECO
 GROUP BY id_cidade;
 
 
