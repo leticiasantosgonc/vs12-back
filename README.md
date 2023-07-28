@@ -25,5 +25,7 @@
 
 | Aula | Assuntos                      | Tasks e exercícios da aula                                               |
 | ---- | ----------------------------- | ------------------------------------------------------------------------ |
-| 01   | Introdução + DML              | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-02) |
-| 02   | FK + MER                      | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-02) |
+| 01   | Introdução + DML              | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-02/aula-01) |
+| 02   | FK + MER                      | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-02/aula-02) |
+| 03   | Junção, Update, Delete        | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-02/aula-03) |
+
