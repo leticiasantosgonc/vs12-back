@@ -2,6 +2,7 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,15 +11,23 @@ import java.util.List;
 @RequestMapping("/pessoa") // localhost:8080/pessoa
 public class PessoaController {
 
-    private PessoaService pessoaService;
+    // Modelo ANTIGO de Injeção
+    // @Autowired
+    private final PessoaService pessoaService;
 
-    public PessoaController() {
-        pessoaService = new PessoaService();
+    @Value("${user}")
+    private String usuario;
+
+    @Value("${spring.application.name}")
+    private String app;
+
+    public PessoaController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
     }
 
     @GetMapping("/hello") // GET localhost:8080/pessoa/hello
     public String hello() {
-        return "Hello world!";
+        return "Hello WORLD!\n" + " <br>App: " + app + " <br>Usuario: " + usuario;
     }
 
     @GetMapping("/hello-2") // GET localhost:8080/pessoa/hello-2
@@ -51,4 +60,5 @@ public class PessoaController {
     public void delete(@PathVariable("idPessoa") Integer id) throws Exception {
         pessoaService.delete(id);
     }
+
 }

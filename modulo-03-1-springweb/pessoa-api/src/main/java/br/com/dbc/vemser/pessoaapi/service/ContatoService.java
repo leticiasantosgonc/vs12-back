@@ -1,38 +1,44 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
+import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+@Service
 public class ContatoService {
-    private ContatoRepository contatoRepository;
-    public ContatoService(){
-        contatoRepository = new ContatoRepository();
+    private final ContatoRepository contatoRepository;
+    private final PessoaService pessoaService;
+
+    public ContatoService(ContatoRepository contatoRepository, PessoaService pessoaService) {
+        this.contatoRepository = contatoRepository;
+        this.pessoaService = pessoaService;
     }
-    public List<Contato> list(){
+
+    public void delete(Long id) throws Exception {
+        contatoRepository.delete(id);
+    }
+
+    public Contato create(Integer idPessoa, Contato contato) throws Exception {
+        Pessoa pessoa = pessoaService.list().stream()
+                .filter(x -> x.getIdPessoa().equals(idPessoa))
+                .findFirst().orElseThrow(() -> new Exception("Pessoa não encontrada"));
+        contato.setIdPessoa(pessoa.getIdPessoa());
+        return contatoRepository.create(contato);
+    }
+
+    public Contato update(Integer id,Contato contato) throws Exception {
+        return contatoRepository.update(id, contato);
+    }
+
+
+    public List<Contato> list() {
         return contatoRepository.list();
     }
-    public List<Contato> contatoPessoa(int idPessoa) {
-        return contatoRepository.contatoPessoa(idPessoa);
-    }
-    public Contato create (Contato contato, int idPessoa){
-        return contatoRepository.create(contato, idPessoa);
-    }
 
-    public Contato update (int idContato, Contato atualizaContato) throws Exception{
-        Contato buscaContato = getContato(idContato);
-        buscaContato.setNumero(atualizaContato.getNumero());
-        return buscaContato;
-    }
-    private Contato getContato(int idContato) throws Exception{
-        Contato buscaContato = contatoRepository.list().stream()
-                .filter(contato -> contato.getIdContato() == idContato).findFirst()
-                .orElseThrow(() -> new Exception("Contato não encontrado!"));
-        return buscaContato;
-    }
-
-    public void delete(int idContato) throws Exception {
-        Contato buscaContato = getContato(idContato);
-        contatoRepository.delete(buscaContato);
+    public List<Contato> listByIdPessoa(Integer idPessoa) {
+        return contatoRepository.listByIdPessoa(idPessoa);
     }
 }

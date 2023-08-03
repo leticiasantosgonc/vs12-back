@@ -2,18 +2,31 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
+import org.apache.commons.lang3.EnumUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class PessoaService {
 
-    private PessoaRepository pessoaRepository;
+    // @Autowired
+    private final PessoaRepository pessoaRepository;
 
-    public PessoaService(){
-        pessoaRepository = new PessoaRepository();
+    public PessoaService(PessoaRepository pessoaRepository){
+        this.pessoaRepository = pessoaRepository;
     }
 
     public Pessoa create(Pessoa pessoa){
+
+        if (pessoa != null && StringUtils.isEmpty(pessoa.getNome())) {
+
+        }
+
+        //ObjectUtils.isEmpty()
+
         return pessoaRepository.create(pessoa);
     }
 
