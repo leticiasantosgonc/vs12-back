@@ -1,22 +1,37 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
-public class Endereco {
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-    private int idEndereco;
+public class Endereco {
+    private Integer idEndereco;
     private Integer idPessoa;
+    @NotNull (message = "Tipo do endereço não pode ser nulo")
     private TipoEndereco tipo;
+    @NotBlank(message = "o logradouro não pode ser vazio")
+    @Size(max = 250, message = "Ultrapassou 250 caracteres")
     private String logradouro;
+    @NotNull(message = "O número não pode ser nulo")
     private Integer numero;
     private String complemento;
+    @NotNull(message = "O cep não pode ser nulo")
+    @NotBlank(message = "O cep não pode ser vazio")
+    @Size(max = 8, message = "O cep ultrapassou 8 caracteres")
     private String cep;
+    @NotNull(message = "A cidade não pode ser nulo")
+    @NotBlank(message = "A cidade não pode ser vazio")
+    @Size(max = 250, message = "A cidade ultrapassou 250 caracteres")
     private String cidade;
+    @NotNull(message = "O estado não pode ser nulo")
     private String estado;
+    @NotNull(message = "O pais não pode ser nulo")
     private String pais;
 
     public Endereco() {
     }
 
-    public Endereco(int idEndereco, int idPessoa, TipoEndereco tipo, String logradouro, int numero, String complemento, String cep, String cidade, String estado, String pais) {
+    public Endereco(Integer idEndereco, Integer idPessoa, TipoEndereco tipo, String logradouro, Integer numero, String complemento, String cep, String cidade, String estado, String pais) {
         this.idEndereco = idEndereco;
         this.idPessoa = idPessoa;
         this.tipo = tipo;
@@ -27,14 +42,6 @@ public class Endereco {
         this.cidade = cidade;
         this.estado = estado;
         this.pais = pais;
-    }
-
-    public int getIdEndereco() {
-        return idEndereco;
-    }
-
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
     }
 
     public Integer getIdPessoa() {
@@ -107,5 +114,13 @@ public class Endereco {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    public Integer getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 }

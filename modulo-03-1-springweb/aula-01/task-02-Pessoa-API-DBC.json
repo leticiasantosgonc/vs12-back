@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "4626ba6a-93fe-4215-81a3-5c05f4054cc6",
+		"name": "Pessoa-API-DBC",
+		"description": "Task 02 - Aula 01\n\nConectada a API da DBC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20805520",
+		"_collection_link": "https://www.postman.com/interstellar-robot-853946/workspace/vs12/collection/20805520-4626ba6a-93fe-4215-81a3-5c05f4054cc6?action=share&creator=20805520&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Pessoa",
+			"item": [
+				{
+					"name": "GET/pessoa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/pessoa",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST/pessoa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"nome\": \"Task3 Modulo Spring\",\r\n            \"dataNascimento\": \"1996-02-24\",\r\n            \"cpf\": \"96385274112\",\r\n            \"email\": \"modulospring@hotmail.com\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/pessoa",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT/pessoa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"nome\": \"Task3\",\r\n        \"dataNascimento\": \"1996-02-24\",\r\n        \"cpf\": \"11111111111\",\r\n        \"email\": \"modulospring@hotmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/pessoa/23626",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"pessoa",
+								"23626"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE/pessoa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/pessoa/23627",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"pessoa",
+								"23627"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Contato",
+			"item": [
+				{
+					"name": "GET/contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/contato",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"contato"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET/contato by idPessoa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/contato/9959",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"contato",
+								"9959"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST/contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tipoContato\": \"COMERCIAL\",\r\n  \"telefone\": \"(51)91234-1232\",\r\n  \"descricao\": \"zapzap\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/contato/23626",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"contato",
+								"23626"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT/contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tipoContato\": \"RESIDENCIAL\",\r\n  \"telefone\": \"(51)91234-1232\",\r\n  \"descricao\": \"whatsapp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/contato/1975",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"contato",
+								"1975"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE/contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX01BUktFVElORyIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjkwODYzNDkyLCJleHAiOjE2OTA5NDk4OTJ9.3QyYOHHea5QrF1ucw1ZrgLQLM24c9t7FAZ3wuoJwwKM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/contato/1975",
+							"protocol": "http",
+							"host": [
+								"vemser-hml",
+								"dbccompany",
+								"com",
+								"br"
+							],
+							"port": "39000",
+							"path": [
+								"vemser",
+								"dbc-pessoa-api",
+								"contato",
+								"1975"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autenticador",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"admin\",\r\n    \"senha\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://vemser-hml.dbccompany.com.br:39000/vemser/dbc-pessoa-api/auth",
+					"protocol": "http",
+					"host": [
+						"vemser-hml",
+						"dbccompany",
+						"com",
+						"br"
+					],
+					"port": "39000",
+					"path": [
+						"vemser",
+						"dbc-pessoa-api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

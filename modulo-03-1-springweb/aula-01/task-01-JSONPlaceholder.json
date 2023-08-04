@@ -1,16 +1,18 @@
 {
 	"info": {
-		"_postman_id": "9d526609-15dd-4f44-a527-e65bccf4dca1",
+		"_postman_id": "85818e52-a147-449e-ae7c-3fff5865ad4d",
 		"name": "JSONPlaceholder",
+		"description": "Task 01 - Aula 01 do Módulo de Spring WEB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "20805520"
+		"_exporter_id": "20805520",
+		"_collection_link": "https://www.postman.com/interstellar-robot-853946/workspace/vs12/collection/20805520-85818e52-a147-449e-ae7c-3fff5865ad4d?action=share&creator=20805520&source=collection_link"
 	},
 	"item": [
 		{
 			"name": "Comment",
 			"item": [
 				{
-					"name": "TodosDados",
+					"name": "GET/Comment",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -30,7 +32,7 @@
 					"response": []
 				},
 				{
-					"name": "FiltroPorId",
+					"name": "GET/Comment by Id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -51,7 +53,7 @@
 					"response": []
 				},
 				{
-					"name": "EnviaDados",
+					"name": "POST/Comment",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -80,7 +82,7 @@
 					"response": []
 				},
 				{
-					"name": "AtualizaDados",
+					"name": "PUT/Comment",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -110,14 +112,10 @@
 					"response": []
 				},
 				{
-					"name": "DeletaDados",
+					"name": "DELETE/Comment",
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://jsonplaceholder.typicode.com/comments/10",
 							"protocol": "https",
@@ -141,7 +139,7 @@
 			"name": "Post",
 			"item": [
 				{
-					"name": "TodosDados",
+					"name": "GET/Post",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -161,7 +159,7 @@
 					"response": []
 				},
 				{
-					"name": "FiltroPorId",
+					"name": "GET/Post by Id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -182,7 +180,7 @@
 					"response": []
 				},
 				{
-					"name": "EnviaDados",
+					"name": "POST/Post",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -211,7 +209,7 @@
 					"response": []
 				},
 				{
-					"name": "AtualizaDados",
+					"name": "PUT/Post",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -241,14 +239,10 @@
 					"response": []
 				},
 				{
-					"name": "DeletaDados",
+					"name": "DELETE/Post",
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\r\n        \"userId\": 100,\r\n        \"id\": 100,\r\n        \"title\": \"testando\"\r\n    }"
-						},
 						"url": {
 							"raw": "https://jsonplaceholder.typicode.com/posts/100",
 							"protocol": "https",
@@ -272,7 +266,7 @@
 			"name": "Albums",
 			"item": [
 				{
-					"name": "TodosDados",
+					"name": "GET/Albums",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -292,7 +286,7 @@
 					"response": []
 				},
 				{
-					"name": "FiltroPorId",
+					"name": "GET/Albums by Id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -313,7 +307,7 @@
 					"response": []
 				},
 				{
-					"name": "EnviaDados",
+					"name": "POST/Albums",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -342,7 +336,7 @@
 					"response": []
 				},
 				{
-					"name": "AtualizaDados",
+					"name": "PUT/Albums",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -372,7 +366,7 @@
 					"response": []
 				},
 				{
-					"name": "DeletaDados",
+					"name": "DELETE/Albums",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -398,7 +392,7 @@
 			"name": "Photos",
 			"item": [
 				{
-					"name": "TodosDados",
+					"name": "GET/Photo",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -418,7 +412,7 @@
 					"response": []
 				},
 				{
-					"name": "FiltroPorId",
+					"name": "GET/Photo by Id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -439,7 +433,7 @@
 					"response": []
 				},
 				{
-					"name": "EnviaDados",
+					"name": "POST/Photo",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -468,7 +462,7 @@
 					"response": []
 				},
 				{
-					"name": "AlteraDados",
+					"name": "PUT/Photo",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -498,7 +492,7 @@
 					"response": []
 				},
 				{
-					"name": "DeletaDados",
+					"name": "DELETE/Photo",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -524,7 +518,7 @@
 			"name": "Todos",
 			"item": [
 				{
-					"name": "TodosDados",
+					"name": "GET/Todos",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -544,7 +538,7 @@
 					"response": []
 				},
 				{
-					"name": "FiltroPorId",
+					"name": "GET/Todos by Id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -565,7 +559,7 @@
 					"response": []
 				},
 				{
-					"name": "EnviaDados",
+					"name": "POST/Todos",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -594,7 +588,7 @@
 					"response": []
 				},
 				{
-					"name": "AtualizaDados",
+					"name": "PUT/Todos",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -624,7 +618,7 @@
 					"response": []
 				},
 				{
-					"name": "DeletaDados",
+					"name": "DELETE/Todos",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -650,7 +644,7 @@
 			"name": "Users",
 			"item": [
 				{
-					"name": "TodosDados",
+					"name": "GET/Users",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -670,7 +664,7 @@
 					"response": []
 				},
 				{
-					"name": "FiltroPorId",
+					"name": "GET/Users by Id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -691,7 +685,7 @@
 					"response": []
 				},
 				{
-					"name": "EnviaDados",
+					"name": "POST/Users",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -720,7 +714,7 @@
 					"response": []
 				},
 				{
-					"name": "AtualizaDados",
+					"name": "PUT/Users",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -750,7 +744,7 @@
 					"response": []
 				},
 				{
-					"name": "DeletaDados",
+					"name": "DELETE/Users",
 					"request": {
 						"method": "DELETE",
 						"header": [],

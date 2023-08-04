@@ -3,10 +3,15 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/contato")
 public class ContatoController {
@@ -27,19 +32,21 @@ public class ContatoController {
     }
 
     @PostMapping("/{idPessoa}")
-    public Contato create(@PathVariable("idPessoa") Integer idPessoa,
-                          @RequestBody Contato contato) throws Exception {
-        return contatoService.create(idPessoa, contato);
+    public ResponseEntity<Contato> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
+                                               @Valid @RequestBody Contato contato) throws Exception {
+        return new ResponseEntity<>(contatoService.create(idPessoa, contato), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public Contato update(@PathVariable("id") Integer id,
-                          @RequestBody Contato contato) throws Exception {
-        return contatoService.update(id, contato);
+    public ResponseEntity<Contato> update(@Valid @PathVariable("id") Integer id,
+                           @Valid @RequestBody Contato contatoAtualizar) throws Exception {
+        Contato contatoAtualizado = contatoService.update(id, contatoAtualizar);
+        return ResponseEntity.ok(contatoAtualizado);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) throws Exception {
+    public ResponseEntity<Void> delete(@Valid @PathVariable("id") Long id) throws Exception {
         contatoService.delete(id);
+        return ResponseEntity.ok().build();
     }
 }
