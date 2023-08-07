@@ -23,7 +23,7 @@ public class EnderecoRepository {
         enderecos.add(new Endereco(COUNTER.incrementAndGet(), 2, TipoEndereco.RESIDENCIAL, "Rua Leopoldo Faguntes", 456, "casa", "89999555", "Porto Alegre", "RS", "Brasil"));
     }
 
-    public void delete(Long id) throws Exception {
+    public void delete(Long id) throws RegraDeNegocioException {
         Endereco endereco = enderecos.stream()
                 .filter(x -> x.getIdEndereco() == id.longValue())
                 .findFirst()
@@ -37,11 +37,11 @@ public class EnderecoRepository {
         return endereco;
     }
 
-    public Endereco update(Integer id, Endereco endereco) throws Exception {
+    public Endereco update(Integer id, Endereco endereco) throws RegraDeNegocioException {
         Endereco enderecoAlterado = enderecos.stream()
                 .filter(x -> x.getIdEndereco().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new RegraDeNegocioException("Endereco não encontrado"));
+                .orElseThrow(() -> new RegraDeNegocioException("Endereco não econtrado"));
         enderecoAlterado.setTipo(endereco.getTipo());
         enderecoAlterado.setLogradouro(endereco.getLogradouro());
         enderecoAlterado.setNumero(endereco.getNumero());
@@ -64,7 +64,7 @@ public class EnderecoRepository {
                 .collect(Collectors.toList());
     }
 
-    public Endereco findById(Integer idEndereco) throws Exception {
+    public Endereco findById(Integer idEndereco) throws RegraDeNegocioException{
         return enderecos.stream()
                 .filter(x -> x.getIdEndereco().equals(idEndereco))
                 .findFirst()

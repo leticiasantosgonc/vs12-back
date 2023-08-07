@@ -1,31 +1,39 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
+import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
-import org.apache.commons.lang3.StringUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@Data
 public class PessoaService {
 
     // @Autowired
     private final PessoaRepository pessoaRepository;
+    private final ObjectMapper objectMapper;
 
-    public PessoaService(PessoaRepository pessoaRepository){
-        this.pessoaRepository = pessoaRepository;
-    }
 
-    public Pessoa create(Pessoa pessoa){
+    public PessoaDTO create(PessoaCreateDTO pessoa) throws RegraDeNegocioException {
+        Pessoa entity = objectMapper.convertValue(pessoa, Pessoa.class);
+        entity.setCpf(pessoa.getCpf());
+        entity.setNome(pessoa.getNome());
+        entity.setDataNascimento(pessoa.getDataNascimento());
 
-        if (pessoa != null && StringUtils.isEmpty(pessoa.getNome())) {
+        Pessoa pessoa1 = pessoaRepository.create(entity);
 
-        }
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        pessoaDTO.setIdPessoa(pessoa1.getIdPessoa());
+        pessoaDTO.setDataNascimento(pessoa1.getDataNascimento());
+        pessoaDTO.setCpf(pessoa1.getCpf());
+        pessoaDTO.setNome(pessoa1.getNome());
 
-        //ObjectUtils.isEmpty()
-
-        return pessoaRepository.create(pessoa);
+        return pessoaDTO;
     }
 
     public List<Pessoa> list(){

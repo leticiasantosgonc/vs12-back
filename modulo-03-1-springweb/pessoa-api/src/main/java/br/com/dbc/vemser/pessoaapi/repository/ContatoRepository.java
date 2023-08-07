@@ -2,6 +2,7 @@ package br.com.dbc.vemser.pessoaapi.repository;
 
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
+import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -23,11 +24,11 @@ public class ContatoRepository {
         contatosList.add(new Contato(COUNTER.incrementAndGet(), 2, TipoContato.COMERCIAL, "051998654789", "trabalho"));
     }
 
-    public void delete(Long id) throws Exception {
+    public void delete(Long id) throws RegraDeNegocioException {
         Contato contato = contatosList.stream()
                 .filter(x -> x.getIdContato() == id.longValue())
                 .findFirst()
-                .orElseThrow(() -> new Exception("Contato não econtrado"));
+                .orElseThrow(() -> new RegraDeNegocioException("Contato não econtrado"));
         contatosList.remove(contato);
     }
 
@@ -37,11 +38,11 @@ public class ContatoRepository {
         return contato;
     }
 
-    public Contato update(Integer id, Contato contato) throws Exception {
+    public Contato update(Integer id, Contato contato) throws RegraDeNegocioException {
         Contato contatoAlterado = contatosList.stream()
                 .filter(x -> x.getIdContato().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Contato não econtrada"));
+                .orElseThrow(() -> new RegraDeNegocioException("Contato não econtrada"));
         contatoAlterado.setTipoContato(contato.getTipoContato());
         contatoAlterado.setNumero(contato.getNumero());
         contatoAlterado.setDescricao(contato.getDescricao());

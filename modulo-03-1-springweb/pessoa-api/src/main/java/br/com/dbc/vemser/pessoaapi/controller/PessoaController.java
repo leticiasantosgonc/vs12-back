@@ -1,7 +1,10 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
+import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/pessoa") // localhost:8080/pessoa
+@Slf4j
 public class PessoaController {
 
     // Modelo ANTIGO de Injeção
@@ -32,6 +36,7 @@ public class PessoaController {
 
     @GetMapping("/hello") // GET localhost:8080/pessoa/hello
     public String hello() {
+        log.info("hello");
         return "Hello WORLD!\n" + " <br>App: " + app + " <br>Usuario: " + usuario;
     }
 
@@ -51,7 +56,8 @@ public class PessoaController {
     }
 
     @PostMapping // POST localhost:8080/pessoa
-    public ResponseEntity<Pessoa> create(@Valid @RequestBody Pessoa pessoa) {
+    public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaCreateDTO pessoa) throws Exception {
+        log.info("criando pessoa");
         return new ResponseEntity<>(pessoaService.create(pessoa) , HttpStatus.OK);
     }
 

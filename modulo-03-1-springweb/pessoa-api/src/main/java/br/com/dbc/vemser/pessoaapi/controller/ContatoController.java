@@ -1,8 +1,11 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
 
+import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +17,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/contato")
+@Slf4j
 public class ContatoController {
     private final ContatoService contatoService;
 
@@ -32,14 +36,15 @@ public class ContatoController {
     }
 
     @PostMapping("/{idPessoa}")
-    public ResponseEntity<Contato> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
-                                               @Valid @RequestBody Contato contato) throws Exception {
+    public ResponseEntity<ContatoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
+                                             @Valid @RequestBody ContatoCreateDTO contato) throws Exception {
+        log.info("criando contato");
         return new ResponseEntity<>(contatoService.create(idPessoa, contato), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Contato> update(@Valid @PathVariable("id") Integer id,
-                           @Valid @RequestBody Contato contatoAtualizar) throws Exception {
+                                          @Valid @RequestBody Contato contatoAtualizar) throws Exception {
         Contato contatoAtualizado = contatoService.update(id, contatoAtualizar);
         return ResponseEntity.ok(contatoAtualizado);
     }
