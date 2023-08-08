@@ -1,6 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.repository;
 
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
+import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -42,5 +43,12 @@ public class PessoaRepository {
         return listaPessoas.stream()
                 .filter(pessoa -> pessoa.getNome().toUpperCase().contains(nome.toUpperCase()))
                 .collect(Collectors.toList());
+    }
+
+    public Pessoa findById(Integer idPessoa) throws RegraDeNegocioException {
+        return listaPessoas.stream()
+                .filter(x -> x.getIdPessoa().equals(idPessoa))
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
     }
 }
