@@ -22,14 +22,14 @@ public class ContatoService {
     private final EmailService emailService;
 
     public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contato) throws RegraDeNegocioException{
-        PessoaDTO pessoaDTO = pessoaService.list().stream()
+        PessoaDTO pessoa = pessoaService.list().stream()
                 .filter(x -> x.getIdPessoa().equals(idPessoa))
                 .findFirst().orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
 
         Contato entity = objectMapper.convertValue(contato, Contato.class);
-        entity.setIdPessoa(idPessoa);
+        entity.setIdPessoa(pessoa.getIdPessoa());
+        Contato contatoCriado = contatoRepository.create(entity);;
 
-        Contato contatoCriado = contatoRepository.create(entity);
         ContatoDTO contatoDTO = convertToDTO(contatoCriado);
         return contatoDTO;
     }
@@ -40,10 +40,6 @@ public class ContatoService {
     }
 
     public void delete(Long id) throws RegraDeNegocioException{
-        Contato contatoRecuperado = contatoRepository.list().stream()
-                .filter(contato -> contato.getIdContato().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado!"));
         contatoRepository.delete(id);
     }
 
