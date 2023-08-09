@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -31,28 +30,29 @@ public class ContatoController {
     public ResponseEntity<List<ContatoDTO>> list() {
         return new ResponseEntity<>(contatoService.list(), HttpStatus.OK);
     }
-
     @GetMapping("/{idPessoa}")
-    public List<Contato> listByIdCliente(@PathVariable("idPessoa") Integer idPessoa) {
-        return contatoService.listByIdPessoa(idPessoa);
+    public ResponseEntity<List<ContatoDTO>> listByIdCliente(@PathVariable("idPessoa") Integer idPessoa) {
+        List<ContatoDTO> contatosDTO = contatoService.listByIdPessoa(idPessoa);
+        return new ResponseEntity<>(contatosDTO, HttpStatus.OK);
     }
 
     @PostMapping("/{idPessoa}")
     public ResponseEntity<ContatoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
-                                             @Valid @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException, MessagingException {
+                                             @Valid @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException{
         log.info("criando contato");
-        return new ResponseEntity<>(contatoService.create(idPessoa, contato), HttpStatus.OK);
+        ContatoDTO contatoDTO = contatoService.create(idPessoa, contato);
+        return new ResponseEntity<>(contatoDTO, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Contato> update(@Valid @PathVariable("id") Integer id,
-                                          @Valid @RequestBody Contato contatoAtualizar) throws RegraDeNegocioException, MessagingException {
+                                          @Valid @RequestBody Contato contatoAtualizar) throws RegraDeNegocioException{
         Contato contatoAtualizado = contatoService.update(id, contatoAtualizar);
         return ResponseEntity.ok(contatoAtualizado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@Valid @PathVariable("id") Long id) throws RegraDeNegocioException, MessagingException {
+    public ResponseEntity<Void> delete(@Valid @PathVariable("id") Long id) throws RegraDeNegocioException{
         contatoService.delete(id);
         return ResponseEntity.ok().build();
     }

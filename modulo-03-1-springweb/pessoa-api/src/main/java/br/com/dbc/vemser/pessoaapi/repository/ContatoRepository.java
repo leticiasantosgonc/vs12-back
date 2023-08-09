@@ -24,14 +24,6 @@ public class ContatoRepository {
         contatosList.add(new Contato(COUNTER.incrementAndGet(), 2, TipoContato.COMERCIAL, "051998654789", "trabalho"));
     }
 
-    public void delete(Long id) throws RegraDeNegocioException {
-        Contato contato = contatosList.stream()
-                .filter(x -> x.getIdContato() == id.longValue())
-                .findFirst()
-                .orElseThrow(() -> new RegraDeNegocioException("Contato não econtrado"));
-        contatosList.remove(contato);
-    }
-
     public Contato create(Contato contato) {
         contato.setIdContato(COUNTER.incrementAndGet());
         contatosList.add(contato);
@@ -42,13 +34,20 @@ public class ContatoRepository {
         Contato contatoAlterado = contatosList.stream()
                 .filter(x -> x.getIdContato().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new RegraDeNegocioException("Contato não econtrada"));
+                .orElseThrow(() -> new RegraDeNegocioException("Contato não econtrado"));
         contatoAlterado.setTipoContato(contato.getTipoContato());
         contatoAlterado.setNumero(contato.getNumero());
         contatoAlterado.setDescricao(contato.getDescricao());
         return contatoAlterado;
     }
 
+    public void delete(Long id) throws RegraDeNegocioException {
+        Contato contato = contatosList.stream()
+                .filter(x -> x.getIdContato() == id.longValue())
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("Contato não econtrado"));
+        contatosList.remove(contato);
+    }
 
     public List<Contato> list() {
         return contatosList;

@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -40,20 +39,20 @@ public class PessoaController {
     }
 
     @PostMapping // POST localhost:8080/pessoa
-    public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaCreateDTO pessoa) throws RegraDeNegocioException, MessagingException {
+    public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaCreateDTO pessoa) throws RegraDeNegocioException{
         log.info("criando pessoa");
         return new ResponseEntity<>(pessoaService.create(pessoa) , HttpStatus.OK);
     }
 
     @PutMapping("/{idPessoa}") // PUT localhost:8080/pessoa/1000
     public ResponseEntity<Pessoa> update(@PathVariable("idPessoa") Integer id,
-                                         @RequestBody Pessoa pessoaAtualizar) throws RegraDeNegocioException, MessagingException {
+                                         @RequestBody Pessoa pessoaAtualizar) throws Exception {
         Pessoa pessoaAlterada = pessoaService.update(id, pessoaAtualizar);
         return ResponseEntity.ok(pessoaAlterada);
     }
 
     @DeleteMapping("/{idPessoa}") // DELETE localhost:8080/pessoa/10
-    public ResponseEntity<Void> delete(@PathVariable("idPessoa") Integer id) throws RegraDeNegocioException, MessagingException {
+    public ResponseEntity<Void> delete(@PathVariable("idPessoa") Integer id) throws RegraDeNegocioException {
         pessoaService.delete(id);
         return ResponseEntity.ok().build();
     }
