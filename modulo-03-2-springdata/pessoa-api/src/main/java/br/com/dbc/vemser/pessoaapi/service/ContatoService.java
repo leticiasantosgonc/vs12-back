@@ -21,16 +21,12 @@ public class ContatoService {
     private final ObjectMapper objectMapper;
 
     public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contato) throws RegraDeNegocioException{
-        PessoaDTO pessoa = pessoaService.list().stream()
-                .filter(x -> x.getIdPessoa().equals(idPessoa))
-                .findFirst().orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
+        PessoaDTO pessoa = pessoaService.getById(idPessoa);
 
-        ContatoEntity entity = objectMapper.convertValue(contato, ContatoEntity.class);
+        ContatoEntity entity = converterDTO(contato);
         entity.setIdPessoa(pessoa.getIdPessoa());
-        ContatoEntity contatoCriado = contatoRepository.save(entity);
 
-        ContatoDTO contatoDTO = convertToDTO(contatoCriado);
-        return contatoDTO;
+        return retornarDTO(contatoRepository.save(entity));
     }
 
     public ContatoDTO update(Integer id, ContatoCreateDTO contato) throws RegraDeNegocioException{
@@ -75,6 +71,9 @@ public class ContatoService {
     private List<ContatoDTO> convertToDTOList(List<ContatoEntity> contatosList){
         return contatosList.stream()
                 .map(this::convertToDTO).collect(Collectors.toList());
+    }
+    public ContatoEntity converterDTO(ContatoCreateDTO dto) {
+        return objectMapper.convertValue(dto, ContatoEntity.class);
     }
 
     public ContatoDTO retornarDTO(ContatoEntity entity) {

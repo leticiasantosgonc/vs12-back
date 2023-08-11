@@ -1,7 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
 
-import br.com.dbc.vemser.pessoaapi.client.DadosPessoaisClient;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
@@ -20,7 +19,6 @@ import java.util.stream.Collectors;
 public class PessoaService {
     private final PessoaRepository pessoaRepository;
     private final ObjectMapper objectMapper;
-    private final DadosPessoaisClient dadosPessoaisClient;
 
     private final String NOT_FOUND_MESSAGE = "ID da pessoa nao encontrada";
 
