@@ -4,7 +4,6 @@ package br.com.dbc.vemser.pessoaapi.controller;
 import br.com.dbc.vemser.pessoaapi.documentacao.ContatoControllerDoc;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
-import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
 import lombok.extern.slf4j.Slf4j;
@@ -31,11 +30,11 @@ public class ContatoController implements ContatoControllerDoc {
     public ResponseEntity<List<ContatoDTO>> list() {
         return new ResponseEntity<>(contatoService.list(), HttpStatus.OK);
     }
-    @GetMapping("/{idPessoa}")
-    public ResponseEntity<List<ContatoDTO>> listByIdCliente(@PathVariable("idPessoa") Integer idPessoa) {
-        List<ContatoDTO> contatosDTO = contatoService.listByIdPessoa(idPessoa);
-        return new ResponseEntity<>(contatosDTO, HttpStatus.OK);
-    }
+//    @GetMapping("/{idPessoa}")
+//    public ResponseEntity<List<ContatoDTO>> listByIdCliente(@PathVariable("idPessoa") Integer idPessoa) {
+//        List<ContatoDTO> contatosDTO = contatoService.listByIdPessoa(idPessoa);
+//        return new ResponseEntity<>(contatosDTO, HttpStatus.OK);
+//    }
 
     @PostMapping("/{idPessoa}")
     public ResponseEntity<ContatoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
@@ -46,14 +45,13 @@ public class ContatoController implements ContatoControllerDoc {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contato> update(@Valid @PathVariable("id") Integer id,
-                                          @Valid @RequestBody Contato contatoAtualizar) throws RegraDeNegocioException{
-        Contato contatoAtualizado = contatoService.update(id, contatoAtualizar);
-        return ResponseEntity.ok(contatoAtualizado);
+    public ResponseEntity<ContatoDTO> update(@Valid @PathVariable("id") Integer id,
+                                             @RequestBody ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException{
+        return ResponseEntity.ok(contatoService.update(id, contatoAtualizar));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@Valid @PathVariable("id") Long id) throws RegraDeNegocioException{
+    public ResponseEntity<Void> delete(@Valid @PathVariable("id") Integer id) throws RegraDeNegocioException{
         contatoService.delete(id);
         return ResponseEntity.ok().build();
     }
