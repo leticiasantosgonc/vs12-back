@@ -56,7 +56,7 @@ public interface EnderecoControllerDoc {
                         @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
                 }
         )
-        @PostMapping("/{idPessoa}")
+        @PostMapping
         public ResponseEntity<EnderecoDTO> create(@Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException;
 
         @Operation(summary = "Alterar endereco", description = "Altera endereco")

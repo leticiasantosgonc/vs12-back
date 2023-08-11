@@ -51,7 +51,6 @@ public class EnderecoService {
         enderecoRecuperado.setEstado(endereco.getEstado());
         enderecoRecuperado.setPais(endereco.getPais());
         enderecoRecuperado.setTipo(endereco.getTipo());
-        enderecoRecuperado.setIdEndereco(id);
 
         return retornarDTO(enderecoRepository.save(enderecoRecuperado));
     }

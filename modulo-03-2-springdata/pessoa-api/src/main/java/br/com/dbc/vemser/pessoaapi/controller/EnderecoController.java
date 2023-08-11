@@ -31,7 +31,7 @@ public class EnderecoController implements EnderecoControllerDoc {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{idPessoa}")
+    @PostMapping//("/{idPessoa}")
     public ResponseEntity<EnderecoDTO> create(@Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException{
         return new ResponseEntity<>(enderecoService.create(endereco), HttpStatus.OK);
     }
