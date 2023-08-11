@@ -20,8 +20,8 @@ public class EnderecoEntity {
     @Column(name = "id_endereco")
     private Integer idEndereco;
 
-    @Column (name = "id_pessoa")
-    private Integer idPessoa;
+//    @Column (name = "id_pessoa")
+//    private Integer idPessoa;
 
     @Column (name = "tipo")
     private TipoEndereco tipo;

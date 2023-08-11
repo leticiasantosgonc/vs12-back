@@ -2,7 +2,6 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
-import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.EnderecoRepository;
@@ -28,13 +27,8 @@ public class EnderecoService {
         enderecoRepository.delete(enderecoEntity);
     }
 
-    public EnderecoDTO create(Integer idPessoa, EnderecoCreateDTO endereco) throws RegraDeNegocioException {
-        PessoaDTO pessoa = pessoaService.list().stream()
-                .filter(x -> x.getIdPessoa().equals(idPessoa))
-                .findFirst().orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
-
+    public EnderecoDTO create(EnderecoCreateDTO endereco) throws RegraDeNegocioException {
         EnderecoEntity entity = objectMapper.convertValue(endereco, EnderecoEntity.class);
-        entity.setIdPessoa(pessoa.getIdPessoa());
         EnderecoEntity enderecoNovo = enderecoRepository.save(entity);
 
         EnderecoDTO enderecoDTO = convertToDTO(enderecoNovo);
@@ -52,7 +46,6 @@ public class EnderecoService {
         enderecoRecuperado.setCep(endereco.getCep());
         enderecoRecuperado.setCidade(endereco.getCidade());
         enderecoRecuperado.setNumero(endereco.getNumero());
-        enderecoRecuperado.setIdPessoa(endereco.getIdPessoa());
         enderecoRecuperado.setComplemento(endereco.getComplemento());
         enderecoRecuperado.setLogradouro(endereco.getLogradouro());
         enderecoRecuperado.setEstado(endereco.getEstado());

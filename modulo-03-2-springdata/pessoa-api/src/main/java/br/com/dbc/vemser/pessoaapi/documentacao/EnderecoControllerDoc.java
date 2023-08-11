@@ -57,8 +57,7 @@ public interface EnderecoControllerDoc {
                 }
         )
         @PostMapping("/{idPessoa}")
-        public ResponseEntity<EnderecoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
-                                                  @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException;
+        public ResponseEntity<EnderecoDTO> create(@Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException;
 
         @Operation(summary = "Alterar endereco", description = "Altera endereco")
         @ApiResponses(
