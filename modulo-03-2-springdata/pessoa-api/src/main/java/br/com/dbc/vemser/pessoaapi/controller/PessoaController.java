@@ -27,7 +27,6 @@ public class PessoaController implements PessoaControllerDoc {
         this.pessoaService = pessoaService;
     }
 
-
     @GetMapping // GET localhost:8080/pessoa
     public ResponseEntity<List<PessoaDTO>> list() {
         return new ResponseEntity<>(pessoaService.list(), HttpStatus.OK);

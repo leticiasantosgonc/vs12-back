@@ -2,8 +2,8 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
-import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
+import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,7 +21,7 @@ public class ContatoService {
     private final ObjectMapper objectMapper;
 
     public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contato) throws RegraDeNegocioException{
-        PessoaDTO pessoa = pessoaService.getById(idPessoa);
+        PessoaEntity pessoa = pessoaService.findById(idPessoa);
 
         ContatoEntity entity = converterDTO(contato);
         entity.setIdPessoa(pessoa.getIdPessoa());
@@ -38,7 +38,6 @@ public class ContatoService {
         contatoRecuperado.setIdPessoa(contato.getIdPessoa());
 
         return retornarDTO(contatoRepository.save(contatoRecuperado));
-
     }
 
     public void delete(Integer id) throws RegraDeNegocioException{
