@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +22,7 @@ public class ContatoEntity {
     @Column(name = "id_contato")
     private Integer idContato;
 
-    @Column (name = "id_pessoa")
-    private Integer idPessoa;
+    //private Integer idPessoa;
 
     @Column (name = "tipo")
     private TipoContato tipoContato;
@@ -32,5 +32,11 @@ public class ContatoEntity {
 
     @Column(name = "descricao")
     private String descricao;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
+    private PessoaEntity pessoaEntity;
+
 
 }

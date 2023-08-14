@@ -3,6 +3,7 @@ package br.com.dbc.vemser.pessoaapi.controller;
 import br.com.dbc.vemser.pessoaapi.documentacao.PessoaControllerDoc;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.EntidadeNaoEncontradaException;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
@@ -12,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Validated
@@ -55,4 +57,22 @@ public class PessoaController implements PessoaControllerDoc {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/pessoa/cpf")
+    public List<PessoaEntity> getPessoasByCpf(@RequestParam String cpf) {
+        return pessoaService.getPessoasByCpf(cpf);
+    }
+
+    @GetMapping("/pessoa/data-nascimento")
+    public List<PessoaEntity> getPessoasByDataNascimento(
+            @RequestParam String dataInicial,
+            @RequestParam String dataFinal) {
+        LocalDate dataInicio = LocalDate.parse(dataInicial);
+        LocalDate dataFim = LocalDate.parse(dataFinal);
+        return pessoaService.getPessoasByDataNascimento(dataInicio, dataFim);
+    }
+
+    @GetMapping("/pessoa/nome")
+    public List<PessoaEntity> getPessoasByNome(@RequestParam String nome) {
+        return pessoaService.getPessoasByNome(nome);
+    }
 }

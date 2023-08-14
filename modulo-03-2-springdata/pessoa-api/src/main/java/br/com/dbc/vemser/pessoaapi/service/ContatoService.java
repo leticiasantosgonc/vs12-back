@@ -24,8 +24,7 @@ public class ContatoService {
         PessoaEntity pessoa = pessoaService.findById(idPessoa);
 
         ContatoEntity entity = converterDTO(contato);
-        entity.setIdPessoa(pessoa.getIdPessoa());
-
+        entity.setPessoaEntity(pessoa);
         return retornarDTO(contatoRepository.save(entity));
     }
 
@@ -35,7 +34,6 @@ public class ContatoService {
         contatoRecuperado.setTipoContato(contato.getTipoContato());
         contatoRecuperado.setDescricao(contato.getDescricao());
         contatoRecuperado.setNumero(contato.getNumero());
-        contatoRecuperado.setIdPessoa(contato.getIdPessoa());
 
         return retornarDTO(contatoRepository.save(contatoRecuperado));
     }
@@ -62,14 +60,9 @@ public class ContatoService {
 //                .collect(Collectors.toList());
 //    }
 
-    private ContatoDTO convertToDTO(ContatoEntity contato){
-        ContatoDTO contatoDTO = objectMapper.convertValue(contato, ContatoDTO.class);
-        return contatoDTO;
-    }
-
     private List<ContatoDTO> convertToDTOList(List<ContatoEntity> contatosList){
         return contatosList.stream()
-                .map(this::convertToDTO).collect(Collectors.toList());
+                .map(this::retornarDTO).collect(Collectors.toList());
     }
     public ContatoEntity converterDTO(ContatoCreateDTO dto) {
         return objectMapper.convertValue(dto, ContatoEntity.class);

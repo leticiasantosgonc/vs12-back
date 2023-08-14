@@ -1,8 +1,12 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
+import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
+import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
+import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.EnderecoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,12 +32,13 @@ public class EnderecoService {
         enderecoRepository.delete(enderecoEntity);
     }
 
-    public EnderecoDTO create(EnderecoCreateDTO endereco) throws RegraDeNegocioException {
-        EnderecoEntity entity = objectMapper.convertValue(endereco, EnderecoEntity.class);
-        EnderecoEntity enderecoNovo = enderecoRepository.save(entity);
+    public EnderecoDTO create(Integer idPessoa, EnderecoCreateDTO endereco) throws RegraDeNegocioException {
+        PessoaEntity pessoa = pessoaService.findById(idPessoa);
 
-        EnderecoDTO enderecoDTO = convertToDTO(enderecoNovo);
-        return enderecoDTO;
+        EnderecoEntity entity = converterDTO(endereco);
+        entity.setPessoas((Set<PessoaEntity>) pessoa);
+
+        return retornarDTO(enderecoRepository.save(entity));
     }
 
     public EnderecoEntity returnById(Integer id) throws RegraDeNegocioException{
@@ -69,18 +75,15 @@ public class EnderecoService {
                 .orElseThrow(() -> new RegraDeNegocioException("endereco não encontrado"));
     }
 
-    private EnderecoDTO convertToDTO(EnderecoEntity endereco){
-       EnderecoDTO enderecoDTO = objectMapper.convertValue(endereco, EnderecoDTO.class);
-
-        return enderecoDTO;
-    }
-
     private List<EnderecoDTO> convertToDTOList(List<EnderecoEntity> enderecos){
         return enderecos.stream()
-                .map(this::convertToDTO).collect(Collectors.toList());
+                .map(this::retornarDTO).collect(Collectors.toList());
     }
+    public EnderecoEntity converterDTO(EnderecoCreateDTO dto) {
+        return objectMapper.convertValue(dto, EnderecoEntity.class);
+    }
+
     public EnderecoDTO retornarDTO(EnderecoEntity entity) {
         return objectMapper.convertValue(entity, EnderecoDTO.class);
     }
-
 }

@@ -1,5 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
+import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,4 +36,15 @@ public class PessoaEntity {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "Pessoa_X_Pessoa_Endereco",
+            joinColumns = @JoinColumn(name = "id_pessoa"),
+            inverseJoinColumns = @JoinColumn(name = "id_endereco")
+    )
+    private Set<EnderecoEntity> enderecos;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "pessoaEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ContatoEntity> contatos;
 }

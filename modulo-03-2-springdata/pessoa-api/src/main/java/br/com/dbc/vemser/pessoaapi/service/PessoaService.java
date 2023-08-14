@@ -1,6 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
 
+import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,4 +86,18 @@ public class PessoaService {
     public PessoaDTO retornarDTO(PessoaEntity entity) {
         return objectMapper.convertValue(entity, PessoaDTO.class);
     }
+
+    public List<PessoaEntity> getPessoasByCpf(String cpf) {
+        return pessoaRepository.findByCpf(cpf);
+    }
+
+    public List<PessoaEntity> getPessoasByDataNascimento(LocalDate dataInicial, LocalDate dataFinal) {
+        return pessoaRepository.findByDataNascimentoBetween(dataInicial, dataFinal);
+    }
+
+    public List<PessoaEntity> getPessoasByNome(String nome) {
+        return pessoaRepository.findByNomeIgnoreCaseContaining(nome);
+    }
+
+
 }
