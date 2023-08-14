@@ -7,6 +7,7 @@ import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.EntidadeNaoEncontradaException;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
+//import org.hibernate.mapping.Set;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Validated
 @RestController
@@ -74,5 +77,10 @@ public class PessoaController implements PessoaControllerDoc {
     @GetMapping("/pessoa/nome")
     public List<PessoaEntity> getPessoasByNome(@RequestParam String nome) {
         return pessoaService.getPessoasByNome(nome);
+    }
+
+    @GetMapping("/listar-com-contatos")
+    public ResponseEntity<Map<String, Set>>listaContatoPessoa(@RequestParam(required = false) Integer idPessoa){
+        return new ResponseEntity<>(pessoaService.listaContatoPessoa(idPessoa), HttpStatus.OK);
     }
 }

@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -47,4 +46,33 @@ public class PessoaEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "pessoaEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ContatoEntity> contatos;
+
+
+    public Integer getIdPessoa() {
+        return idPessoa;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Set<EnderecoEntity> getEnderecos() {
+        return enderecos;
+    }
+
+    public Set<ContatoEntity> getContatos() {
+        return contatos;
+    }
 }

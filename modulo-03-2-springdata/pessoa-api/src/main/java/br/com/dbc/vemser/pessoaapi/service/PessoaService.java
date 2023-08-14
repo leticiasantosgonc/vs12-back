@@ -1,7 +1,5 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
-
-import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
@@ -10,10 +8,11 @@ import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+//import org.hibernate.mapping.Set;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -94,9 +93,40 @@ public class PessoaService {
     public List<PessoaEntity> getPessoasByDataNascimento(LocalDate dataInicial, LocalDate dataFinal) {
         return pessoaRepository.findByDataNascimentoBetween(dataInicial, dataFinal);
     }
-
     public List<PessoaEntity> getPessoasByNome(String nome) {
         return pessoaRepository.findByNomeIgnoreCaseContaining(nome);
+    }
+
+//    public Map<String, Set> listaEnderecoPessoa(Integer idPessoa){
+//        Map<String, Set> map = new HashMap<>();
+//        List<PessoaEntity> pessoas= new ArrayList<>();
+//        if(idPessoa != null) {
+//            pessoas = pessoaRepository.findAll().stream()
+//                    .filter(pessoa -> pessoa.getIdPessoa() == idPessoa)
+//                    .collect(Collectors.toList());
+//        }else{
+//            pessoas = pessoaRepository.findAll();
+//        }
+//        for(PessoaEntity pessoa: pessoas){
+//            map.put(pessoa.getNome(), pessoa.getEnderecos());
+//        }
+//        return map;
+//    }
+
+    public Map<String, Set> listaContatoPessoa(Integer idPessoa){
+        Map<String, Set> map = new HashMap<>();
+        List<PessoaEntity> pessoas= new ArrayList<>();
+        if(idPessoa != null) {
+            pessoas = pessoaRepository.findAll().stream()
+                    .filter(pessoa -> pessoa.getIdPessoa() == idPessoa)
+                    .collect(Collectors.toList());
+        }else{
+            pessoas = pessoaRepository.findAll();
+        }
+        for(PessoaEntity pessoa: pessoas){
+            map.put(pessoa.getNome(), pessoa.getContatos());
+        }
+        return map;
     }
 
 
