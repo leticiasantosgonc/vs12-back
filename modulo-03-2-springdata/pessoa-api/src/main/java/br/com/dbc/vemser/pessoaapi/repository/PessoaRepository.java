@@ -13,10 +13,4 @@ public interface PessoaRepository extends JpaRepository<PessoaEntity, Integer> {
     List<PessoaEntity> findByNomeIgnoreCaseContaining(String nome);
     List<PessoaEntity> findByCpf(String cpf);
     List<PessoaEntity> findByDataNascimentoBetween(LocalDate dataInicial, LocalDate dataFinal);
-
-    @Query("SELECT DISTINCT p FROM PESSOA p LEFT JOIN FETCH p.enderecos")
-    List<PessoaEntity> findPessoasComEnderecos();
-
-    @Query("SELECT DISTINCT p FROM PESSOA p LEFT JOIN FETCH p.contatos")
-    List<PessoaEntity> findPessoasComContatos();
 }
