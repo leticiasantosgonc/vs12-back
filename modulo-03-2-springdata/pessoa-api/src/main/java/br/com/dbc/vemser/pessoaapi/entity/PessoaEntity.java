@@ -47,6 +47,9 @@ public class PessoaEntity {
     @OneToMany(mappedBy = "pessoaEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ContatoEntity> contatos;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "pessoaEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PetEntity> pets;
 
     public Integer getIdPessoa() {
         return idPessoa;
@@ -74,5 +77,9 @@ public class PessoaEntity {
 
     public Set<ContatoEntity> getContatos() {
         return contatos;
+    }
+
+    public Set<PetEntity> getPets() {
+        return pets;
     }
 }

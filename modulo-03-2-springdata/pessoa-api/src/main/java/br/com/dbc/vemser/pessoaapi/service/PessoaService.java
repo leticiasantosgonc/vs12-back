@@ -113,6 +113,22 @@ public class PessoaService {
         return map;
     }
 
+    public Map<String, Set> listaPetPessoa(Integer idPessoa){
+        Map<String, Set> map = new HashMap<>();
+        List<PessoaEntity> pessoas= new ArrayList<>();
+        if(idPessoa != null) {
+            pessoas = pessoaRepository.findAll().stream()
+                    .filter(pessoa -> pessoa.getIdPessoa() == idPessoa)
+                    .collect(Collectors.toList());
+        }else{
+            pessoas = pessoaRepository.findAll();
+        }
+        for(PessoaEntity pessoa: pessoas){
+            map.put(pessoa.getNome(), pessoa.getPets());
+        }
+        return map;
+    }
+
     public Map<String, Set> listaContatoPessoa(Integer idPessoa){
         Map<String, Set> map = new HashMap<>();
         List<PessoaEntity> pessoas= new ArrayList<>();

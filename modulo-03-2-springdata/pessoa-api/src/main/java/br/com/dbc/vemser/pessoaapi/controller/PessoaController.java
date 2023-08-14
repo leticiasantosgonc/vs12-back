@@ -88,4 +88,9 @@ public class PessoaController implements PessoaControllerDoc {
     public ResponseEntity<Map<String, Set>>listaEnderecoPessoa(@RequestParam(required = false) Integer idPessoa){
         return new ResponseEntity<>(pessoaService.listaEnderecoPessoa(idPessoa), HttpStatus.OK);
     }
+
+    @GetMapping("/listar-com-pets")
+    public ResponseEntity<Map<String, Set>>listaPetPessoa(@RequestParam(required = false) Integer idPessoa){
+        return new ResponseEntity<>(pessoaService.listaPetPessoa(idPessoa), HttpStatus.OK);
+    }
 }

@@ -9,8 +9,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "Pet")
@@ -18,13 +18,9 @@ public class PetEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PET_SEQ")
-    @SequenceGenerator(name = "PET_SEQ", sequenceName = "seq_pet2", allocationSize = 1)
+    @SequenceGenerator(name = "PET_SEQ", sequenceName = "seq_pet", allocationSize = 1)
     @Column(name = "id_pet")
     private Integer idPet;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "enderecos")
-    private Set<PessoaEntity> pessoas;
 
     @Column(name = "nome")
     private String nome;
@@ -33,9 +29,10 @@ public class PetEntity {
     @Column(name = "tipo")
     private TipoPet tipo;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_pet", referencedColumnName = "id_pet")
-    private PessoaEntity pet;
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
+    private PessoaEntity pessoaEntity;
 
 
 }
