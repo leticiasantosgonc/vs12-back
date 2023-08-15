@@ -1,6 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.documentacao.PessoaControllerDoc;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaCompletoDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
@@ -97,9 +98,8 @@ public class PessoaController implements PessoaControllerDoc {
         return new ResponseEntity<>(pessoaService.listaPetPessoa(idPessoa), HttpStatus.OK);
     }
 
-//    @GetMapping("/pessoa-completo")
-//    public ResponseEntity<List<PessoaEntity>> obterPessoasCompletas(@RequestParam(required = false) Long id) {
-//        List<PessoaEntity> pessoas = pessoaRepository.findPessoasCompletoById(id);
-//        return ResponseEntity.ok(pessoas);
-//    }
+    @GetMapping("/pessoa-completo")
+    public PessoaCompletoDTO findPessoaCompleto (@RequestParam(required = false) Integer id) {
+        return pessoaRepository.findPessoaCompleto(id);
+    }
 }
