@@ -48,10 +48,10 @@ public class EnderecoController implements EnderecoControllerDoc {
         return new ResponseEntity<>(enderecoService.list(), HttpStatus.OK);
     }
 
-//    @GetMapping("/{idPessoa}/pessoa")
-//    public List<EnderecoEntity> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
-//        return enderecoService.listByIdPessoa(idPessoa);
-//    }
+    @GetMapping("/{idPessoa}/pessoa")
+    public List<EnderecoDTO> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
+        return enderecoService.listByIdPessoa(idPessoa);
+    }
 
     @GetMapping("/{idEndereco}")
     public EnderecoEntity findById(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException {

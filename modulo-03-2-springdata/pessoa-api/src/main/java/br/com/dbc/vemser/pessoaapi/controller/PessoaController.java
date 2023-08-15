@@ -6,6 +6,7 @@ import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.EntidadeNaoEncontradaException;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
+import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
 //import org.hibernate.mapping.Set;
 import org.springframework.http.HttpStatus;
@@ -27,9 +28,11 @@ public class PessoaController implements PessoaControllerDoc {
     // Modelo ANTIGO de Injeção
     // @Autowired
     private final PessoaService pessoaService;
+    private final PessoaRepository pessoaRepository;
 
-    public PessoaController(PessoaService pessoaService) {
+    public PessoaController(PessoaService pessoaService, PessoaRepository pessoaRepository) {
         this.pessoaService = pessoaService;
+        this.pessoaRepository = pessoaRepository;
     }
 
     @GetMapping // GET localhost:8080/pessoa
@@ -93,4 +96,10 @@ public class PessoaController implements PessoaControllerDoc {
     public ResponseEntity<Map<String, Set>>listaPetPessoa(@RequestParam(required = false) Integer idPessoa){
         return new ResponseEntity<>(pessoaService.listaPetPessoa(idPessoa), HttpStatus.OK);
     }
+
+//    @GetMapping("/pessoa-completo")
+//    public ResponseEntity<List<PessoaEntity>> obterPessoasCompletas(@RequestParam(required = false) Long id) {
+//        List<PessoaEntity> pessoas = pessoaRepository.findPessoasCompletoById(id);
+//        return ResponseEntity.ok(pessoas);
+//    }
 }

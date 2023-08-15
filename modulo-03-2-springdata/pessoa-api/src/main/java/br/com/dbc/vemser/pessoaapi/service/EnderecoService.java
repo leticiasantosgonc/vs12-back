@@ -66,9 +66,10 @@ public class EnderecoService {
         return this.convertToDTOList(enderecos);
     }
 
-//    public List<EnderecoEntity> listByIdPessoa(Integer idPessoa) {
-//        return enderecoRepository.findById(idPessoa);
-//    }
+    public List<EnderecoDTO> listByIdPessoa(Integer idPessoa) {
+        List<EnderecoDTO> enderecos = listByIdPessoa(idPessoa);
+        return enderecos;
+    }
 
     public EnderecoEntity findById(Integer idEndereco) throws RegraDeNegocioException {
         return enderecoRepository.findById(idEndereco)
