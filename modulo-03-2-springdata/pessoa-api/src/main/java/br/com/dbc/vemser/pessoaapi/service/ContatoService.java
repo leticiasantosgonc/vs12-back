@@ -8,49 +8,30 @@ import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ContatoService {
+
+    @Autowired
     private final ContatoRepository contatoRepository;
     private final PessoaService pessoaService;
     private final ObjectMapper objectMapper;
 
-    public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contato) throws RegraDeNegocioException{
-        PessoaEntity pessoa = pessoaService.findById(idPessoa);
+   public List<ContatoDTO> findAll() {
+        List<ContatoEntity> listContatos = contatoRepository.findAll();
+        List<ContatoDTO> contatosDTO = new ArrayList<>();
 
-        ContatoEntity entity = converterDTO(contato);
-        entity.setPessoaEntity(pessoa);
-        return retornarDTO(contatoRepository.save(entity));
-    }
-
-    public ContatoDTO update(Integer id, ContatoCreateDTO contato) throws RegraDeNegocioException{
-        ContatoEntity contatoRecuperado = returnById(id);
-
-        contatoRecuperado.setTipoContato(contato.getTipoContato());
-        contatoRecuperado.setDescricao(contato.getDescricao());
-        contatoRecuperado.setNumero(contato.getNumero());
-
-        return retornarDTO(contatoRepository.save(contatoRecuperado));
-    }
-
-    public void delete(Integer id) throws RegraDeNegocioException{
-        ContatoEntity contatoRecuperado = returnById(id);
-        contatoRepository.delete(contatoRecuperado);
-    }
-
-    public ContatoEntity returnById(Integer id) throws RegraDeNegocioException{
-        return contatoRepository.findById(id)
-                .orElseThrow(() -> new RegraDeNegocioException("contato não encontrado"));
-    }
-
-    public List<ContatoDTO> list() {
-        List<ContatoEntity> contatos = contatoRepository.findAll();
-        return this.convertToDTOList(contatos);
+        for (ContatoEntity contatoEntity : listContatos) {
+            contatosDTO.add(retornarDTO(contatoEntity));
+        }
+        return contatosDTO;
     }
 
 //    public List<ContatoDTO> listByIdPessoa(Integer idPessoa) {
@@ -58,14 +39,34 @@ public class ContatoService {
 //        return contatos.stream()
 //                .map(this::convertToDTO)
 //                .collect(Collectors.toList());
-//    }
+////    }
+    public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contato) throws RegraDeNegocioException{
+        PessoaEntity pessoa = pessoaService.findById(idPessoa);
 
-    private List<ContatoDTO> convertToDTOList(List<ContatoEntity> contatosList){
-        return contatosList.stream()
-                .map(this::retornarDTO).collect(Collectors.toList());
+        ContatoEntity contatoCriado = retornarEntity(contato);
+        contatoCriado.setPessoaEntity(pessoa);
+        ContatoEntity contatoEnviar = contatoRepository.save(contatoCriado);
+        return retornarDTO(contatoEnviar);
     }
-    public ContatoEntity converterDTO(ContatoCreateDTO dto) {
-        return objectMapper.convertValue(dto, ContatoEntity.class);
+
+    public ContatoDTO update(Integer idContato, ContatoCreateDTO contatoDTO) throws RegraDeNegocioException{
+        ContatoEntity contatoAtualizar = contatoRepository.findById(idContato)
+                        .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
+
+        contatoAtualizar.setTipoContato(contatoDTO.getTipoContato());
+        contatoAtualizar.setDescricao(contatoDTO.getDescricao());
+        contatoAtualizar.setNumero(contatoDTO.getNumero());
+
+        ContatoEntity contatoAtualizado = contatoRepository.save(contatoAtualizar);
+        return retornarDTO(contatoAtualizado);
+    }
+    public void delete(Integer id) throws RegraDeNegocioException{
+        contatoRepository.findById(id)
+                .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
+        contatoRepository.deleteById(id);
+    }
+    public ContatoEntity retornarEntity(ContatoCreateDTO contatoDTO) {
+        return objectMapper.convertValue(contatoDTO, ContatoEntity.class);
     }
 
     public ContatoDTO retornarDTO(ContatoEntity entity) {

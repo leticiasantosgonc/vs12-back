@@ -15,15 +15,13 @@ import javax.persistence.*;
 @Entity (name = "CONTATO")
 public class ContatoEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CONTATO_SEQ")
-    @SequenceGenerator(name = "CONTATO_SEQ", sequenceName = "seq_contato2", allocationSize = 1)
+    @SequenceGenerator(name = "CONTATO_SEQ", sequenceName = "seq_contato", allocationSize = 1)
     @Column(name = "id_contato")
     private Integer idContato;
 
-    //private Integer idPessoa;
-
+    @Enumerated(EnumType.STRING)
     @Column (name = "tipo")
     private TipoContato tipoContato;
 

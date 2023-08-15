@@ -1,17 +1,12 @@
 package br.com.dbc.vemser.pessoaapi.dto;
 
-import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.entity.TipoPet;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
-import java.util.Set;
 
+@Data
 public class PetCreateDTO {
 
     @Schema(description = "Nome do pet")

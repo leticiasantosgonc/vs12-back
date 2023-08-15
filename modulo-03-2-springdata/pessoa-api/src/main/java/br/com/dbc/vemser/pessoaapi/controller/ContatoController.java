@@ -1,25 +1,23 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
-
 import br.com.dbc.vemser.pessoaapi.documentacao.ContatoControllerDoc;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @Validated
 @RestController
 @RequestMapping("/contato")
-@Slf4j
-public class ContatoController implements ContatoControllerDoc {
+public class ContatoController  implements ContatoControllerDoc{
     private final ContatoService contatoService;
 
     public ContatoController(ContatoService contatoService) {
@@ -27,8 +25,8 @@ public class ContatoController implements ContatoControllerDoc {
     }
 
     @GetMapping
-    public ResponseEntity<List<ContatoDTO>> list() {
-        return new ResponseEntity<>(contatoService.list(), HttpStatus.OK);
+    public ResponseEntity<List<ContatoDTO>> findAll() {
+        return new ResponseEntity<>(contatoService.findAll(), HttpStatus.OK);
     }
 //    @GetMapping("/{idPessoa}")
 //    public ResponseEntity<List<ContatoDTO>> listByIdCliente(@PathVariable("idPessoa") Integer idPessoa) {
@@ -39,20 +37,19 @@ public class ContatoController implements ContatoControllerDoc {
     @PostMapping("/{idPessoa}")
     public ResponseEntity<ContatoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
                                              @Valid @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException{
-        log.info("criando contato");
-        ContatoDTO contatoDTO = contatoService.create(idPessoa, contato);
-        return new ResponseEntity<>(contatoDTO, HttpStatus.OK);
+        return new ResponseEntity<>(contatoService.create(idPessoa, contato), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ContatoDTO> update(@Valid @PathVariable("id") Integer id,
-                                             @RequestBody ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException{
-        return ResponseEntity.ok(contatoService.update(id, contatoAtualizar));
+    @PutMapping("/{idContato}")
+    public ResponseEntity<ContatoDTO> update(@PathVariable("idContato") @Positive Integer idContato,
+                                             @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException{
+        ContatoDTO contatoAtualizar = contatoService.update(idContato, contato);
+        return new ResponseEntity<>(contatoAtualizar, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@Valid @PathVariable("id") Integer id) throws RegraDeNegocioException{
-        contatoService.delete(id);
+    @DeleteMapping("/{idContato}")
+    public ResponseEntity<Void> delete(@PathVariable("idContato") Integer idContato) throws RegraDeNegocioException{
+        contatoService.delete(idContato);
         return ResponseEntity.ok().build();
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 public interface ContatoControllerDoc {
@@ -23,7 +24,7 @@ public interface ContatoControllerDoc {
                 }
         )
         @GetMapping
-        public ResponseEntity<List<ContatoDTO>> list();
+        public ResponseEntity<List<ContatoDTO>> findAll();
 
 //        @Operation(summary = "Listar contato", description = "Lista pessoa pelo id")
 //        @ApiResponses(
@@ -56,9 +57,9 @@ public interface ContatoControllerDoc {
                         @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
                 }
         )
-        @PutMapping("/{id}")
-        public ResponseEntity<ContatoDTO> update(@Valid @PathVariable("id") Integer id,
-                                                 @RequestBody ContatoCreateDTO contatoAtualizar) throws RegraDeNegocioException;
+        @PutMapping("/{idContato}")
+        public ResponseEntity<ContatoDTO> update(@PathVariable("idContato") @Positive Integer idContato,
+                                                 @RequestBody ContatoCreateDTO contato) throws RegraDeNegocioException;
 
         @Operation(summary = "Deletar contato", description = "Deleta contato")
         @ApiResponses(
@@ -68,8 +69,8 @@ public interface ContatoControllerDoc {
                         @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
                 }
         )
-        @DeleteMapping("/{id}")
-        public ResponseEntity<Void> delete(@Valid @PathVariable("id") Integer id) throws RegraDeNegocioException;
+        @DeleteMapping("/{idContato}")
+        public ResponseEntity<Void> delete(@PathVariable("idContato") Integer idContato) throws RegraDeNegocioException;
 
  }
 

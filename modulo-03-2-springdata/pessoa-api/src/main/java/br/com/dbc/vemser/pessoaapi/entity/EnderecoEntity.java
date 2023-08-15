@@ -49,4 +49,5 @@ public class EnderecoEntity {
     @JsonIgnore
     @ManyToMany(mappedBy = "enderecos")
     private Set<PessoaEntity> pessoas;
+
 }

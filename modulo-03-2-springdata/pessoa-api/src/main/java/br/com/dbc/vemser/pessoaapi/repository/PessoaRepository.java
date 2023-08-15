@@ -15,33 +15,30 @@ public interface PessoaRepository extends JpaRepository<PessoaEntity, Integer> {
     List<PessoaEntity> findByCpf(String cpf);
     List<PessoaEntity> findByDataNascimentoBetween(LocalDate dataInicial, LocalDate dataFinal);
 
-
-    @Query(value = "SELECT new br.com.dbc.vemser.pessoaapi.entity.PessoaCompletoDTO(" +
-            "pe.nome, "+
-            "pe.dataNascimento, "+
-            "pe.cpf, "+
-            "pe.email, "+
-            "c.idContato, "+
-            "c.tipoContato, "+
-            "c.numero, "+
-            "c.descricao, "+
-            "p.nome, "+
-            "p.tipo, "+
-            "e.idEndereco, "+
-            "e.tipo, "+
-            "e.logradouro, "+
-            "e.numero, "+
-            "e.complemento, "+
-            "e.cep, "+
-            "e.cidade, "+
-            "e.estado, "+
-            "e.pais, "+
-            "FROM PessoaEntity pe\n" +
-            "JOIN pe.ContatoEntity c\n" +
-            "JOIN pe.PetEntity p\n" +
-            "LEFT JOIN pe.EnderecoEntity e\n" +
-            "WHERE PessoaEntity.idPessoa = ?1)")
-    PessoaCompletoDTO findPessoaCompleto(Integer idPessoa);
-
-
+//    @Query("SELECT NEW br.com.dbc.vemser.pessoaapi.dto.PessoaCompletoDTO(" +
+//            "pe.idPessoa, " +
+//            "pe.nome, " +
+//            "pe.dataNascimento, " +
+//            "pe.cpf, " +
+//            "pe.email, " +
+//            "c.idContato, " +
+//            "c.tipoContato, " +
+//            "c.numero, " +
+//            "p.idPet, " +
+//            "p.nome AS petNome, " +
+//            "e.idEndereco, " +
+//            "e.tipo, " +
+//            "e.logradouro, " +
+//            "e.numero, " +
+//            "e.complemento, " +
+//            "e.cep, " +
+//            "e.cidade, " +
+//            "e.estado, " +
+//            "e.pais) " +
+//            "FROM PessoaEntity pe " +
+//            "LEFT JOIN pe.contatos c " +
+//            "LEFT JOIN pe.pets p " +
+//            "LEFT JOIN pe.enderecos e " +
+//            "WHERE pe.idPessoa = :idPessoa")
+//    PessoaCompletoDTO findPessoaCompleto(Integer idPessoa);
 }

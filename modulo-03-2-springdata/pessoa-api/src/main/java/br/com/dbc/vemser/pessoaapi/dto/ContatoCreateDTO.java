@@ -10,12 +10,10 @@ import javax.validation.constraints.Size;
 
 @Data
 public class ContatoCreateDTO {
-    @Schema(description = "id da Pessoa", required = true, example = "1")
-    private Integer idPessoa;
 
-    @NotNull
     @Schema(description = "tipo do contato", required = true, example = "Comercial")
     private TipoContato tipoContato;
+
     @NotNull
     @Size(max = 13)
     @Schema(description = "contato", required = true, example = "51980764599")

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 public interface EnderecoControllerDoc {
@@ -24,7 +25,7 @@ public interface EnderecoControllerDoc {
                 }
         )
         @GetMapping
-        public ResponseEntity<List<EnderecoDTO>> list() ;
+        public ResponseEntity<List<EnderecoDTO>> findAll();
 
         @Operation(summary = "Listar enderecos", description = "Lista endereco pelo id")
         @ApiResponses(
@@ -37,17 +38,6 @@ public interface EnderecoControllerDoc {
         @GetMapping("/{idEndereco}")
         public EnderecoEntity findById(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException;
 
-//        @Operation(summary = "Listar endereco", description = "Lista endereco pelo id da pessoa")
-//        @ApiResponses(
-//                value = {
-//                        @ApiResponse(responseCode = "200", description = "Retorna endereco pelo id da pessoa"),
-//                        @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
-//                        @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
-//                }
-//        )
-//        @GetMapping("/{idPessoa}/pessoa")
-//        public List<EnderecoEntity> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa);
-
         @Operation(summary = "Criar endereco", description = "Cria endereco")
         @ApiResponses(
                 value = {
@@ -57,7 +47,8 @@ public interface EnderecoControllerDoc {
                 }
         )
         @PostMapping("/{idPessoa}")
-        public ResponseEntity<EnderecoDTO> create(@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException;
+        public ResponseEntity<EnderecoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
+                                                  @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException;
 
         @Operation(summary = "Alterar endereco", description = "Altera endereco")
         @ApiResponses(
@@ -67,9 +58,9 @@ public interface EnderecoControllerDoc {
                         @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
                 }
         )
-        @PutMapping("/{id}")
-        public ResponseEntity<EnderecoDTO> update(@Valid @PathVariable("id") Integer id,
-                                                  @Valid @RequestBody EnderecoCreateDTO enderecoAtualizar) throws RegraDeNegocioException;
+        @PutMapping("/{idEndereco}")
+        public ResponseEntity<EnderecoDTO> update(@PathVariable("idEndereco") @Positive Integer idEndereco,
+                                                  @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException;
 
         @Operation(summary = "Deletar endereco", description = "Deleta endereco")
         @ApiResponses(
@@ -79,6 +70,6 @@ public interface EnderecoControllerDoc {
                         @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
                 }
         )
-        @DeleteMapping("/{id}")
-        public ResponseEntity<Void> delete(@Valid @PathVariable("id") Integer id) throws RegraDeNegocioException;
+        @DeleteMapping("/{idEndereco}")
+        public ResponseEntity<Void> delete(@PathVariable("idEndereco") Integer idEndereco) throws RegraDeNegocioException;
 }

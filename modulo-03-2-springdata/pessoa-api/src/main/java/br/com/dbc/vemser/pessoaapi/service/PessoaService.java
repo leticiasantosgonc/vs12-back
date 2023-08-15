@@ -145,5 +145,7 @@ public class PessoaService {
         return map;
     }
 
-
+//    public PessoaCompletoDTO findPessoaCompleto(Integer idPessoa) {
+//        return pessoaRepository.findPessoaCompleto(idPessoa);
+//    }
 }

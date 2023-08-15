@@ -23,11 +23,8 @@ import java.util.Set;
 
 @Validated
 @RestController
-@RequestMapping("/pessoa") // localhost:8080/pessoa
+@RequestMapping("/pessoa")
 public class PessoaController implements PessoaControllerDoc {
-
-    // Modelo ANTIGO de Injeção
-    // @Autowired
     private final PessoaService pessoaService;
     private final PessoaRepository pessoaRepository;
 
@@ -41,17 +38,16 @@ public class PessoaController implements PessoaControllerDoc {
         return new ResponseEntity<>(pessoaService.list(), HttpStatus.OK);
     }
 
-    @GetMapping("/byname") // GET localhost:8080/pessoa/byname?nome=Rafa
-    public ResponseEntity<List<PessoaDTO>> listByName(@RequestParam("nome") String nome) {
-        return ResponseEntity.ok(pessoaService.listByName(nome));
-    }
+//    @GetMapping("/byname") // GET localhost:8080/pessoa/byname?nome=Rafa
+//    public ResponseEntity<List<PessoaDTO>> listByName(@RequestParam("nome") String nome) {
+//        return ResponseEntity.ok(pessoaService.listByName(nome));
+//    }
 
     @PostMapping // POST localhost:8080/pessoa
     public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaCreateDTO pessoa) {
         return new ResponseEntity<>(pessoaService.create(pessoa), HttpStatus.OK);
     }
 
-    // Atualizar pessoa
     @PutMapping("/{idPessoa}") // PUT localhost:8080/pessoa/1000
     public ResponseEntity<PessoaDTO> update(@PathVariable("idPessoa") Integer id,
                                             @RequestBody @Valid PessoaCreateDTO pessoaAtualizada) throws RegraDeNegocioException, EntidadeNaoEncontradaException {
@@ -64,20 +60,20 @@ public class PessoaController implements PessoaControllerDoc {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/pessoa/cpf")
-    public List<PessoaEntity> getPessoasByCpf(@RequestParam String cpf) {
-        return pessoaService.getPessoasByCpf(cpf);
-    }
-
-    @GetMapping("/pessoa/data-nascimento")
-    public List<PessoaEntity> getPessoasByDataNascimento(
-            @RequestParam String dataInicial,
-            @RequestParam String dataFinal) {
-        LocalDate dataInicio = LocalDate.parse(dataInicial);
-        LocalDate dataFim = LocalDate.parse(dataFinal);
-        return pessoaService.getPessoasByDataNascimento(dataInicio, dataFim);
-    }
-
+//    @GetMapping("/pessoa/cpf")
+//    public List<PessoaEntity> getPessoasByCpf(@RequestParam String cpf) {
+//        return pessoaService.getPessoasByCpf(cpf);
+//    }
+//
+//    @GetMapping("/pessoa/data-nascimento")
+//    public List<PessoaEntity> getPessoasByDataNascimento(
+//            @RequestParam String dataInicial,
+//            @RequestParam String dataFinal) {
+//        LocalDate dataInicio = LocalDate.parse(dataInicial);
+//        LocalDate dataFim = LocalDate.parse(dataFinal);
+//        return pessoaService.getPessoasByDataNascimento(dataInicio, dataFim);
+//    }
+//
     @GetMapping("/pessoa/nome")
     public List<PessoaEntity> getPessoasByNome(@RequestParam String nome) {
         return pessoaService.getPessoasByNome(nome);
@@ -96,10 +92,5 @@ public class PessoaController implements PessoaControllerDoc {
     @GetMapping("/listar-com-pets")
     public ResponseEntity<Map<String, Set>>listaPetPessoa(@RequestParam(required = false) Integer idPessoa){
         return new ResponseEntity<>(pessoaService.listaPetPessoa(idPessoa), HttpStatus.OK);
-    }
-
-    @GetMapping("/pessoa-completo")
-    public PessoaCompletoDTO findPessoaCompleto (@RequestParam(required = false) Integer id) {
-        return pessoaRepository.findPessoaCompleto(id);
     }
 }

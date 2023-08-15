@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @Validated
@@ -24,37 +25,30 @@ public class EnderecoController implements EnderecoControllerDoc {
         this.enderecoService = enderecoService;
     }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@Valid @PathVariable("id") Integer id) throws RegraDeNegocioException{
-        enderecoService.delete(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/{idPessoa}")
-    public ResponseEntity<EnderecoDTO> create(@PathVariable("idPessoa") Integer idPessoa, @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException{
-        return new ResponseEntity<>(enderecoService.create(idPessoa, endereco), HttpStatus.OK);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<EnderecoDTO> update(@Valid @PathVariable("id") Integer id,
-                                                 @Valid @RequestBody EnderecoCreateDTO enderecoAtualizar) throws RegraDeNegocioException{
-        return ResponseEntity.ok(enderecoService.update(id, enderecoAtualizar));
-
-    }
-
     @GetMapping
-    public ResponseEntity<List<EnderecoDTO>> list() {
-        return new ResponseEntity<>(enderecoService.list(), HttpStatus.OK);
+    public ResponseEntity<List<EnderecoDTO>> findAll() {
+        return new ResponseEntity<>(enderecoService.findAll(), HttpStatus.OK);
     }
-
-    @GetMapping("/{idPessoa}/pessoa")
-    public List<EnderecoDTO> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
-        return enderecoService.listByIdPessoa(idPessoa);
-    }
-
     @GetMapping("/{idEndereco}")
     public EnderecoEntity findById(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException {
         return enderecoService.findById(id);
+    }
+    @PostMapping("/{idPessoa}")
+    public ResponseEntity<EnderecoDTO> create(@Valid @PathVariable("idPessoa") Integer idPessoa,
+                                             @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException{
+        return new ResponseEntity<>(enderecoService.create(idPessoa, endereco), HttpStatus.OK);
+    }
+
+    @PutMapping("/{idEndereco}")
+    public ResponseEntity<EnderecoDTO> update(@PathVariable("idEndereco") @Positive Integer idEndereco,
+                                             @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException{
+        EnderecoDTO enderecoAtualizar = enderecoService.update(idEndereco, endereco);
+        return new ResponseEntity<>(enderecoAtualizar, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{idEndereco}")
+    public ResponseEntity<Void> delete(@PathVariable("idEndereco") Integer idEndereco) throws RegraDeNegocioException{
+        enderecoService.delete(idEndereco);
+        return ResponseEntity.ok().build();
     }
 }

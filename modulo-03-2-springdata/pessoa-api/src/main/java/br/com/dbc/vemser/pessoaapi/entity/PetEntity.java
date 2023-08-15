@@ -16,6 +16,7 @@ import java.util.Set;
 @Entity(name = "Pet")
 public class PetEntity {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PET_SEQ")
     @SequenceGenerator(name = "PET_SEQ", sequenceName = "seq_pet", allocationSize = 1)
@@ -33,6 +34,5 @@ public class PetEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
     private PessoaEntity pessoaEntity;
-
 
 }
