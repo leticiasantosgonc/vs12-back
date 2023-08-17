@@ -25,6 +25,10 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeHttpRequests((authz) -> authz
                         .antMatchers("/auth", "/").permitAll()
+                        .antMatchers("/contato,", "/").permitAll()
+                        .antMatchers("/endereco", "/").permitAll()
+                        .antMatchers("/pessoa", "/").permitAll()
+                        .antMatchers("/pet", "/").permitAll()
                         .anyRequest().authenticated()
                 );
         http.addFilterBefore(new TokenAuthenticationFilter(tokenService), UsernamePasswordAuthenticationFilter.class);
