@@ -27,16 +27,16 @@ public interface EnderecoControllerDoc {
         @GetMapping
         public ResponseEntity<List<EnderecoDTO>> findAll();
 
-        @Operation(summary = "Listar enderecos", description = "Lista endereco pelo id")
-        @ApiResponses(
-                value = {
-                        @ApiResponse(responseCode = "200", description = "Retorna o endereco"),
-                        @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
-                        @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
-                }
-        )
-        @GetMapping("/{idEndereco}")
-        public EnderecoEntity findById(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException;
+//        @Operation(summary = "Listar enderecos", description = "Lista endereco pelo id")
+//        @ApiResponses(
+//                value = {
+//                        @ApiResponse(responseCode = "200", description = "Retorna o endereco"),
+//                        @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+//                        @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+//                }
+//        )
+//        @GetMapping("/{idEndereco}")
+//        public EnderecoEntity findById(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException;
 
         @Operation(summary = "Criar endereco", description = "Cria endereco")
         @ApiResponses(

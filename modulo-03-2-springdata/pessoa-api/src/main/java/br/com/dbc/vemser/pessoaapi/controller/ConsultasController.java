@@ -1,5 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
+import br.com.dbc.vemser.pessoaapi.dto.RelatorioDTO;
 import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 import br.com.dbc.vemser.pessoaapi.repository.EnderecoRepository;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @Validated
 @RestController
@@ -40,6 +42,10 @@ public class ConsultasController {
     @GetMapping("/endereco-idPessoa")
     public ResponseEntity<List<EnderecoEntity>> findEnderecoByIdPessoa(@RequestParam Integer idPessoa){
         return new ResponseEntity<>(enderecoRepository.findEnderecoByPessoa(idPessoa), HttpStatus.OK);
+    }
+    @GetMapping("/relatorio-pessoa")
+    public Set<RelatorioDTO> RelatorioPersonalizadoDTO(){
+        return pessoaRepository.createRelatorioDTO();
     }
 
 }

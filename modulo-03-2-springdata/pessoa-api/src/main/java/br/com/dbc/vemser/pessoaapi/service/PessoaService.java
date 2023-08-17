@@ -2,6 +2,7 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.dto.RelatorioDTO;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.EntidadeNaoEncontradaException;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
@@ -113,6 +114,38 @@ public class PessoaService {
         return map;
     }
 
+    public Map<String, Map<String, Set>> listaPessoaCompleto(Integer idPessoa) {
+        Map<String, Map<String, Set>> map = new HashMap<>();
+        List<PessoaEntity> pessoas = new ArrayList<>();
+
+        try {
+            if (idPessoa != null) {
+                PessoaEntity pessoa = pessoaRepository.findById(idPessoa).orElse(null);
+                if (pessoa != null) {
+                    pessoas.add(pessoa);
+                }
+            } else {
+                pessoas = pessoaRepository.findAll();
+            }
+
+            for (PessoaEntity pessoa : pessoas) {
+                Map<String, Set> pessoaInfo = new HashMap<>();
+                pessoaInfo.put("Enderecos", pessoa.getEnderecos());
+                pessoaInfo.put("Pets", pessoa.getPets());
+                pessoaInfo.put("Contatos", pessoa.getContatos());
+
+                map.put(pessoa.getNome(), pessoaInfo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Você pode logar a exceção ou retornar uma mensagem de erro apropriada aqui
+        }
+
+        return map;
+    }
+
+
+
     public Map<String, Set> listaPetPessoa(Integer idPessoa){
         Map<String, Set> map = new HashMap<>();
         List<PessoaEntity> pessoas= new ArrayList<>();
@@ -144,8 +177,4 @@ public class PessoaService {
         }
         return map;
     }
-
-//    public PessoaCompletoDTO findPessoaCompleto(Integer idPessoa) {
-//        return pessoaRepository.findPessoaCompleto(idPessoa);
-//    }
 }

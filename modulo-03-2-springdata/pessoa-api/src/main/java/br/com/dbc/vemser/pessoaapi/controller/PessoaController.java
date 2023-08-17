@@ -4,6 +4,7 @@ import br.com.dbc.vemser.pessoaapi.documentacao.PessoaControllerDoc;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCompletoDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.dto.RelatorioDTO;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.EntidadeNaoEncontradaException;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
@@ -92,5 +93,13 @@ public class PessoaController implements PessoaControllerDoc {
     @GetMapping("/listar-com-pets")
     public ResponseEntity<Map<String, Set>>listaPetPessoa(@RequestParam(required = false) Integer idPessoa){
         return new ResponseEntity<>(pessoaService.listaPetPessoa(idPessoa), HttpStatus.OK);
+    }
+
+    @GetMapping("/pessoa-completo")
+    public ResponseEntity<Map<String, Map<String, Set>>> listaPessoaCompleto(
+            @RequestParam(required = false) Integer idPessoa) {
+
+        Map<String, Map<String, Set>> pessoaInfo = pessoaService.listaPessoaCompleto(idPessoa);
+        return ResponseEntity.ok(pessoaInfo);
     }
 }

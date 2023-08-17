@@ -21,7 +21,7 @@ public class ContatoEntity {
     @Column(name = "id_contato")
     private Integer idContato;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column (name = "tipo")
     private TipoContato tipoContato;
 

@@ -4,6 +4,7 @@ import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
+import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;

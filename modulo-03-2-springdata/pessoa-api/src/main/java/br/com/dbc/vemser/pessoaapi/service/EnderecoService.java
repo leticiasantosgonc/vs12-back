@@ -1,9 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
-import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
-import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
-import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
-import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
+import br.com.dbc.vemser.pessoaapi.dto.*;
 import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
@@ -71,6 +68,14 @@ public class EnderecoService {
     public EnderecoEntity findById(Integer idEndereco) throws RegraDeNegocioException {
         return enderecoRepository.findById(idEndereco)
                 .orElseThrow(() -> new RegraDeNegocioException("endereco não encontrado"));
+    }
+
+    public List<EnderecoDTO> findByIdPessoa(Integer idPessoa) throws RegraDeNegocioException {
+       PessoaEntity pessoaBuscada = pessoaService.findById(idPessoa);
+        return enderecoRepository.findAll().stream()
+                .filter(endereco -> endereco.getPessoas().contains(pessoaBuscada))
+                .map(this::retornarDTO)
+                .collect(Collectors.toList());
     }
 
     public EnderecoEntity retornarEntity(EnderecoCreateDTO enderecoDTO) {
