@@ -138,7 +138,6 @@ public class PessoaService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            // Você pode logar a exceção ou retornar uma mensagem de erro apropriada aqui
         }
 
         return map;
