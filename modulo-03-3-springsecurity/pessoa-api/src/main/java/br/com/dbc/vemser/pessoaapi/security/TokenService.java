@@ -24,7 +24,7 @@ public class TokenService {
     @Value("${jwt.secret}")
     private String secret;
 
-    private final UsuarioService usuarioService;
+    
 
     public String generateToken(UsuarioEntity usuarioEntity) {
         Date now = new Date();

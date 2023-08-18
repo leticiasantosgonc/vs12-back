@@ -1,12 +1,16 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.dto.LoginDTO;
+import br.com.dbc.vemser.pessoaapi.dto.UsuarioCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.UsuarioDTO;
 import br.com.dbc.vemser.pessoaapi.entity.UsuarioEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.security.TokenService;
 
 import br.com.dbc.vemser.pessoaapi.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -46,20 +50,7 @@ public class AuthController {
     }
 
     @PostMapping("/cadastrar")
-    public String createUsuario(@RequestBody @Valid LoginDTO loginDTO) {
-       Optional<UsuarioEntity> novoUser = usuarioService.createUsuario(loginDTO);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(
-                        novoUser.get().getLogin(),
-                        novoUser.get().getSenha()
-                );
-
-        Authentication authentication =
-                authenticationManager.authenticate(
-                        usernamePasswordAuthenticationToken);
-
-        UsuarioEntity usuarioValidado = (UsuarioEntity) authentication.getPrincipal();
-
-        return tokenService.generateToken(usuarioValidado);
+    public ResponseEntity<UsuarioDTO> createUsuario (@RequestBody UsuarioCreateDTO usuario){
+        return new ResponseEntity<>(usuarioService.createUsuario(usuario), HttpStatus.OK);
     }
 }
