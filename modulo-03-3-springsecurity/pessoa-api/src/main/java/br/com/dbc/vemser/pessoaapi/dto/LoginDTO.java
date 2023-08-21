@@ -9,4 +9,5 @@ public class LoginDTO {
     private String login;
     @NotNull
     private String senha;
+
 }

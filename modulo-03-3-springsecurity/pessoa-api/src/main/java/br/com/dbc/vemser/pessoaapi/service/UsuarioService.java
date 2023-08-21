@@ -2,8 +2,10 @@ package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.UsuarioCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.UsuarioDTO;
+import br.com.dbc.vemser.pessoaapi.entity.CargoEntity;
 import br.com.dbc.vemser.pessoaapi.entity.UsuarioEntity;
 import br.com.dbc.vemser.pessoaapi.exceptions.RegraDeNegocioException;
+import br.com.dbc.vemser.pessoaapi.repository.CargoRepository;
 import br.com.dbc.vemser.pessoaapi.repository.UsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 @Service
@@ -19,6 +22,7 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final ObjectMapper objectMapper;
+    private final CargoRepository cargoRepository;
 
     public Optional<UsuarioEntity> findByLoginAndSenha(String login, String senha) {
         return usuarioRepository.findByLoginAndSenha(login, senha);
@@ -49,12 +53,15 @@ public class UsuarioService {
 
     public UsuarioDTO createUsuario(UsuarioCreateDTO usuario) {
         UsuarioEntity novoUsuario = new UsuarioEntity();
+        CargoEntity cargo = cargoRepository.findById(usuario.getIdCargo()).get();
+
         novoUsuario.setLogin(usuario.getLogin());
         novoUsuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        novoUsuario.setCargos(new HashSet<>());
+        novoUsuario.getCargos().add(cargo);
 
         return retornarDTO(usuarioRepository.save(novoUsuario));
     }
-
     public UsuarioDTO retornarDTO(UsuarioEntity usuarioEntity) {
         return objectMapper.convertValue(usuarioEntity, UsuarioDTO.class);
     }

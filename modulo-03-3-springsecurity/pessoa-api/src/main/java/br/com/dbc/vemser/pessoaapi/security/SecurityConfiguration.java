@@ -1,6 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.security;
 
 import lombok.RequiredArgsConstructor;
+import org.aspectj.asm.internal.HandleProviderDelimiter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -32,11 +33,11 @@ public class SecurityConfiguration {
                 .cors().and()
                 .csrf().disable()
                 .authorizeHttpRequests((authz) -> authz
-                        .antMatchers("/auth", "/").permitAll()
-                        .antMatchers(GET,"/pet/**").hasRole("MARKETING")
-                        .antMatchers(GET,"/pessoa/**").hasRole("MARKETING")
-                        .antMatchers(GET,"/contato/**").hasRole("MARKETING")
-                        .antMatchers(GET,"/endereco/**").hasRole("MARKETING")
+                        .antMatchers("/", "/auth/**").permitAll()
+                        .antMatchers(HttpMethod.GET,"/pet").hasRole("MARKETING")
+                        .antMatchers(HttpMethod.GET,"/pessoa/**").hasRole("MARKETING")
+                        .antMatchers(HttpMethod.GET,"/contato").hasRole("MARKETING")
+                        .antMatchers(HttpMethod.GET,"/endereco/**").hasRole("MARKETING")
                         .antMatchers("/pessoa/**").hasRole("USUARIO")
                         .antMatchers("/contato/**").hasRole("USUARIO")
                         .antMatchers("/endereco/**").hasRole("USUARIO")
