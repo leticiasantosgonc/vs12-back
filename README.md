@@ -29,6 +29,38 @@
 
 📂 3.1 Spring Web
 
-| Aula | Assuntos                      | Tasks e exercícios da aula                                               |
-| ---- | ----------------------------- | ------------------------------------------------------------------------ |
-| 01   | Fundamentos                   | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-03-1-springweb/aula-01) |
+| Aula | Assuntos               | Tasks e exercícios da aula                                                                   |
+|------|------------------------|----------------------------------------------------------------------------------------------|
+| 01   | Fundamentos            |[Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-03-1-springweb/aula-01)|
+| 02   | Desenvolvimento Web    |[Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-03-1-springweb/pessoa-api)|
+| 03   | Injeção de Dependência ||
+| 04   | Bean Validation        ||
+| 05   | Lombok e ObjectMapper  ||
+| 06   | E-mail                 ||
+| 07   | OpenAPI Swagger        ||
+| 08   | Feign Client e Deploy  ||
+
+📂 3.2 Spring Data
+
+| Aula | Assuntos                     | Tasks e exercícios da aula                                                                   |
+|------|------------------------------|----------------------------------------------------------------------------------------------|
+| 01   | Configuração e Repositório   |[Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-03-2-springdata/scripts)|
+| 02   | Relacionamentos              |[Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-03-2-springdata/pessoa-api)|
+| 03   | Consultas JQPL e SQL Nativas ||
+| 04   | Paginação e Ordenação        ||
+| 05   | Exemplos                     ||
+
+📂 3.3 Spring Security
+
+| Aula | Assuntos                             | Tasks e exercícios da aula                                                                   |
+|------|--------------------------------------|----------------------------------------------------------------------------------------------|
+| 01   | Fundamentos e Configurações Iniciais |[Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-03-3-springsecurity/pessoa-api)|
+| 02   | JWT e Criptografia                   ||
+| 03   | Regras e Permissionamentos           ||
+
+📂 4. MongoDB
+
+| Aula | Assuntos            | Tasks e exercícios da aula                                                                   |
+|------|---------------------|----------------------------------------------------------------------------------------------|
+| 01   | NoSQL e Mongo       |[Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-04-mongodb)|
+| 02   |  ||
