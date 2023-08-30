@@ -19,13 +19,11 @@ import java.util.UUID;
 @Slf4j
 public class ProdutorService {
     private final KafkaTemplate<String, String> kafkaTemplate;
-    private final ConsumerService consumerService;
 
     @Value(value = "${kafka.topic}")
     private String topic;
     public void enviarMensagem(String mensagem) {
         send(mensagem, "meu-primeiro-topico");
-        consumerService.consume(mensagem);
     }
     private void send(String messageStr, String topic) {
         Message<String> message = MessageBuilder.withPayload(messageStr)
