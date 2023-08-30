@@ -59,8 +59,19 @@
 | 03   | Regras e Permissionamentos           ||
 
 📂 4. MongoDB
+    4.2 Mockito
 
-| Aula | Assuntos            | Tasks e exercícios da aula                                                                   |
-|------|---------------------|----------------------------------------------------------------------------------------------|
-| 01   | NoSQL e Mongo       |[Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-04-mongodb)|
-| 02   |  ||
+| Aula | Assuntos      | Tasks e exercícios da aula                                                          |
+|------|---------------|-------------------------------------------------------------------------------------|
+| 01   | NoSQL e Mongo | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-04-mongodb) |
+| 02   | Mongo e JPA   | [Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-04-mongodb/aula-02)                                                                                  |
+| 03   | Mongo e JPA   |                                                                                     |
+| 04   | Mockito       |                                                                                     |
+| 05   | Mockito       |                                                                                     |
+
+📂 4.3 Kafka
+
+| Aula | Assuntos                 | Tasks e exercícios da aula                                                                   |
+|------|--------------------------|----------------------------------------------------------------------------------------------|
+| 01   | Fundamentos + Mensageria |[Pasta](https://github.com/leticiasantosgonc/vs12-back/tree/main/modulo-04-3-kafka/produtor-consumidor)|
+| 02   |                          ||
